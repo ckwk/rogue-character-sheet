@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="ed1fbef9-777d-472b-9e7a-9cc4fe94f3bb" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/GameManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../Kordia Dialogue Editing Interface/Assets/Scripts/ResponseBox.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/TextBox.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/LoadFade.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/SaveBanner.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Portrait.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/EditTextBox.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/LoadButton.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/NaturalAC.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/StatButton.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/DiceSwiper.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../Kordia Dialogue Editing Interface/Assets/Scripts/DialogueBox.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/HamburgerMenu.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.textmeshpro@3.0.6/Scripts/Runtime/TMP_InputField.cs" root0="SKIP_HIGHLIGHTING" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/Assets/Scripts/NaturalAC.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/HamburgerMenu.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/LoadButton.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/LRScreen.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Portrait.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/PageSwiper.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/TextBox.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/LoadFade.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/StatButton.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/DiceSwiper.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/SaveBanner.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/EditTextBox.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/StatDice.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/CreateEntry.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/HandleEntries.cs" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectId" id="20Yv3lmd02DRkNQ3L3LZgDlAbKR" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="Discover.Launch.Via.Unity" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+  </component>
+  <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
+    <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+      <option name="allowRunningInParallel" value="false" />
+      <option name="listenPortForConnections" value="false" />
+      <option name="pid" />
+      <option name="selectedOptions">
+        <set />
+      </option>
+      <method v="2" />
+    </configuration>
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+      <option name="allowRunningInParallel" value="false" />
+      <option name="listenPortForConnections" value="false" />
+      <option name="pid" />
+      <option name="selectedOptions">
+        <set />
+      </option>
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ed1fbef9-777d-472b-9e7a-9cc4fe94f3bb" name="Default Changelist" comment="" />
+      <created>1636234142327</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1636234142327</updated>
+      <workItem from="1636234157785" duration="14195000" />
+      <workItem from="1636301754101" duration="612000" />
+      <workItem from="1636308296160" duration="22529000" />
+      <workItem from="1636478193233" duration="1246000" />
+      <workItem from="1636757107164" duration="1307000" />
+      <workItem from="1640106855106" duration="5606000" />
+      <workItem from="1640557224124" duration="689000" />
+      <workItem from="1640706323291" duration="10755000" />
+      <workItem from="1640736362033" duration="1113000" />
+      <workItem from="1640812606608" duration="819000" />
+      <workItem from="1640830516562" duration="4798000" />
+      <workItem from="1640884236735" duration="14315000" />
+      <workItem from="1641065881424" duration="3437000" />
+      <workItem from="1641069365665" duration="1711000" />
+      <workItem from="1641078165912" duration="1659000" />
+      <workItem from="1653252450838" duration="4515000" />
+      <workItem from="1664641960001" duration="11964000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="UnityProjectConfiguration" hasMinimizedUI="true" />
+  <component name="UnityUnitTestConfiguration" currentTestLauncher="EditMode" />
+  <component name="VcsManagerConfiguration">
+    <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+</project>
