@@ -26,20 +26,18 @@ public class PageSwiper : MonoBehaviour, IDragHandler, IEndDragHandler {
             var newLocation = panelLocation;
             newLocation += new Vector3(distance * -Mathf.Sign(percentage), 0,0);
             GameManager.currentScreen += newLocation.x > transform.position.x ? -1 : 1;
-            StartCoroutine(SmoothMove(transform.position, newLocation, viewTrans.position, easing, true));
+            StartCoroutine(SmoothMove(transform.position, newLocation, easing));
             panelLocation = newLocation;
         } else {
-            StartCoroutine(SmoothMove(transform.position, panelLocation, viewTrans.position, easing, false));
+            StartCoroutine(SmoothMove(transform.position, panelLocation, easing));
         }
     }
 
-    IEnumerator SmoothMove(Vector3 start, Vector3 end, Vector3 viewStart, float seconds, bool returnToTop) {
+    IEnumerator SmoothMove(Vector3 start, Vector3 end, float seconds) {
         float t = 0f;
         while (t < 1) {
             t += Time.deltaTime / seconds;
             transform.position = Vector3.Lerp(start, end, Mathf.SmoothStep(0f,1f, t));
-            // if (returnToTop)
-                // viewTrans.position = Vector3.Lerp(viewStart, new Vector3(viewStart.x, viewStartLocation.y), Mathf.SmoothStep(0f, 1f, t));
             yield return null;
         }
     }

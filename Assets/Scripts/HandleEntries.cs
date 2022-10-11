@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.XR;
 
 public class HandleEntries : MonoBehaviour {
@@ -10,18 +11,22 @@ public class HandleEntries : MonoBehaviour {
     public GameObject entry;
     public List<RectTransform> fieldsBelow;
     public HandleEntries handler;
+    public VerticalScroll scroller;
 
     public void Start() {
         _numEntries = 1;
-        if (handler.gameObject)
-            handler._entries.Add(gameObject.GetComponent<RectTransform>());
+        if (!handler.gameObject) return;
+        
+        handler._entries.Add(gameObject.GetComponent<RectTransform>());
+        if (handler.fieldsBelow.Count < 1) scroller.lowestEntry = gameObject.GetComponent<RectTransform>();
     }
     
     // used by the top level add button
     public void CreateEntry() {
         var newEntry = Instantiate(entry, transform.parent, false);
-        newEntry.transform.GetChild(2).GetComponent<HandleEntries>().handler = this;
-        
+        newEntry.transform.GetChild(1).GetComponent<HandleEntries>().handler = this;
+        newEntry.transform.GetChild(1).GetComponent<HandleEntries>().scroller = scroller;
+
         var rTrans = newEntry.GetComponent<RectTransform>();
         var anchoredPos = rTrans.anchoredPosition;
         anchoredPos = new Vector2(anchoredPos.x,anchoredPos.y - _numEntries*offset);
@@ -32,6 +37,8 @@ public class HandleEntries : MonoBehaviour {
             anchoredPos = new Vector2(anchoredPos.x,anchoredPos.y - offset);
             field.anchoredPosition = anchoredPos;
         }
+
+        scroller.numEntries++;
         _numEntries++;
     }
 
@@ -40,6 +47,7 @@ public class HandleEntries : MonoBehaviour {
         var myTrans = gameObject.GetComponent<RectTransform>();
         var below = false;
         handler._numEntries--;
+        scroller.numEntries--;
         foreach (var e in handler._entries) {
             if (e == myTrans) {
                 below = true;

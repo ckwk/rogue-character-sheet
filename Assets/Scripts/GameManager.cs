@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour {
     private int frameCount;
     private GameObject diceMenu, diceSwipeBar, swipeToRoll, saveBanner;
     private AudioSource mainAudio;
+    public List<GameObject> pages;
     public AudioClip buttonPress, diceRoll;
     public Character currentCharacter;
     public TMP_Text name;
