@@ -5,12 +5,14 @@ using UnityEngine.EventSystems;
 using UnityEngine;
 
 public class PageSwiper : MonoBehaviour, IDragHandler, IEndDragHandler {
-    private Vector3 panelLocation;
+    private Vector3 panelLocation, viewStartLocation;
+    private Transform viewTrans;
     private float distance = Screen.width;
     public float percentThreshold = 0.2f, easing = 0.5f;
     private void Start() {
         panelLocation = transform.position;
-        Debug.Log(distance);
+        viewTrans = transform.GetChild(0);
+        viewStartLocation = viewTrans.position;
     }
 
     public void OnDrag(PointerEventData eventData) {
@@ -22,20 +24,22 @@ public class PageSwiper : MonoBehaviour, IDragHandler, IEndDragHandler {
         var percentage = (eventData.pressPosition.x - eventData.position.x) / Screen.width;
         if (Mathf.Abs(percentage) > percentThreshold && (GameManager.currentScreen == 0 || (int)Mathf.Sign(percentage) != GameManager.currentScreen)) {
             var newLocation = panelLocation;
-            newLocation += new Vector3(distance * -Mathf.Sign(percentage),0,0);
+            newLocation += new Vector3(distance * -Mathf.Sign(percentage), 0,0);
             GameManager.currentScreen += newLocation.x > transform.position.x ? -1 : 1;
-            StartCoroutine(SmoothMove(transform.position, newLocation, easing));
+            StartCoroutine(SmoothMove(transform.position, newLocation, viewTrans.position, easing, true));
             panelLocation = newLocation;
         } else {
-            StartCoroutine(SmoothMove(transform.position, panelLocation, easing));
+            StartCoroutine(SmoothMove(transform.position, panelLocation, viewTrans.position, easing, false));
         }
     }
 
-    IEnumerator SmoothMove(Vector3 start, Vector3 end, float seconds) {
+    IEnumerator SmoothMove(Vector3 start, Vector3 end, Vector3 viewStart, float seconds, bool returnToTop) {
         float t = 0f;
         while (t < 1) {
             t += Time.deltaTime / seconds;
             transform.position = Vector3.Lerp(start, end, Mathf.SmoothStep(0f,1f, t));
+            // if (returnToTop)
+                // viewTrans.position = Vector3.Lerp(viewStart, new Vector3(viewStart.x, viewStartLocation.y), Mathf.SmoothStep(0f, 1f, t));
             yield return null;
         }
     }

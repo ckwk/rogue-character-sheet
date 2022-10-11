@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\Connor\AppData\Local\JetBrains\Rider2020.2\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\Connor\AppData\Local\JetBrains\Rider2020.2\resharper-host\Local\Transient\Rider\v202\SolutionCaches\_rogue-character-sheet.-1732009564.00" t="ExcludeRecursive" />
+    <e p="S:\GitHub\rogue-character-sheet" t="IncludeRecursive">
+      <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
+      <e p="Assets" t="Include">
+        <e p="Plugins" t="Include">
+          <e p="NativeGallery" t="Include">
+            <e p="Android" t="Include">
+              <e p="NGCallbackHelper.cs" t="Include" />
+              <e p="NGMediaReceiveCallbackAndroid.cs" t="Include" />
+              <e p="NGPermissionCallbackAndroid.cs" t="Include" />
+            </e>
+            <e p="Editor" t="Include">
+              <e p="NativeGallery.Editor.asmdef" t="Include" />
+              <e p="NGPostProcessBuild.cs" t="Include" />
+            </e>
+            <e p="iOS" t="Include">
+              <e p="NGMediaReceiveCallbackiOS.cs" t="Include" />
+              <e p="NGMediaSaveCallbackiOS.cs" t="Include" />
+            </e>
+            <e p="NativeGallery.cs" t="Include" />
+            <e p="NativeGallery.Runtime.asmdef" t="Include" />
+            <e p="README.txt" t="Include" />
+          </e>
+        </e>
+        <e p="Scripts" t="Include">
+          <e p="DiceSwiper.cs" t="Include" />
+          <e p="EditTextBox.cs" t="Include" />
+          <e p="GameManager.cs" t="Include" />
+          <e p="HamburgerMenu.cs" t="Include" />
+          <e p="HandleEntries.cs" t="Include" />
+          <e p="LoadButton.cs" t="Include" />
+          <e p="LoadFade.cs" t="Include" />
+          <e p="LRScreen.cs" t="Include" />
+          <e p="NaturalAC.cs" t="Include" />
+          <e p="PageSwiper.cs" t="Include" />
+          <e p="Portrait.cs" t="Include" />
+          <e p="SaveBanner.cs" t="Include" />
+          <e p="StatButton.cs" t="Include" />
+          <e p="StatDice.cs" t="Include" />
+          <e p="TextBox.cs" t="Include" />
+        </e>
+        <e p="TextMesh Pro" t="Include">
+          <e p="Fonts" t="Include">
+            <e p="LiberationSans - OFL.txt" t="Include" />
+          </e>
+          <e p="Resources" t="Include">
+            <e p="LineBreaking Following Characters.txt" t="Include" />
+            <e p="LineBreaking Leading Characters.txt" t="Include" />
+          </e>
+          <e p="Shaders" t="Include">
+            <e p="TMP_Bitmap-Custom-Atlas.shader" t="Include" />
+            <e p="TMP_Bitmap-Mobile.shader" t="Include" />
+            <e p="TMP_Bitmap.shader" t="Include" />
+            <e p="TMP_SDF Overlay.shader" t="Include" />
+            <e p="TMP_SDF SSD.shader" t="Include" />
+            <e p="TMP_SDF-Mobile Masking.shader" t="Include" />
+            <e p="TMP_SDF-Mobile Overlay.shader" t="Include" />
+            <e p="TMP_SDF-Mobile SSD.shader" t="Include" />
+            <e p="TMP_SDF-Mobile.shader" t="Include" />
+            <e p="TMP_SDF-Surface-Mobile.shader" t="Include" />
+            <e p="TMP_SDF-Surface.shader" t="Include" />
+            <e p="TMP_SDF.shader" t="Include" />
+            <e p="TMP_Sprite.shader" t="Include" />
+            <e p="TMPro.cginc" t="Include" />
+            <e p="TMPro_Mobile.cginc" t="Include" />
+            <e p="TMPro_Properties.cginc" t="Include" />
+            <e p="TMPro_Surface.cginc" t="Include" />
+          </e>
+          <e p="Sprites" t="Include">
+            <e p="EmojiOne Attribution.txt" t="Include" />
+            <e p="EmojiOne.json" t="Include" />
+          </e>
+        </e>
+      </e>
+      <e p="NativeGallery.Editor.csproj" t="IncludeRecursive" />
+      <e p="NativeGallery.Runtime.csproj" t="IncludeRecursive" />
+      <e p="obj" t="ExcludeRecursive" />
+      <e p="Packages" t="ExcludeRecursive" />
+      <e p="rogue-character-sheet.sln" t="IncludeFlat" />
+      <e p="Temp\Bin" t="ExcludeRecursive" />
+    </e>
+  </component>
+</project>
