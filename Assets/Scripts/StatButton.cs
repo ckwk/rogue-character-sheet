@@ -1,11 +1,17 @@
+using System;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
 
-public class StatButton : MonoBehaviour {
-    public Text statDice;
+public class StatButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler {
+    public InputField stat;
     private Text typeDice;
     private InputField numDice;
-    private GameObject diceMenu, diceSwipeBar, swipeToRoll;
+    private GameObject diceMenu, diceSwipeBar, swipeToRoll, diceButton;
+    private float _touchTimer = 0f, _secondsUntilEdit = 1f;
+    private bool pointerDown = false;
+    private string[] dice = {"1d4", "1d6", "1d7", "1d8", "1d10", "2d6", "2d7", "2d8", "2d10", "3d7"};
 
     private void Awake() {
         numDice = GameObject.Find("Number").GetComponent<InputField>();
@@ -13,13 +19,39 @@ public class StatButton : MonoBehaviour {
         diceMenu = GameObject.Find("DiceMenu");
         diceSwipeBar = GameObject.Find("DiceSwipeBar");
         swipeToRoll = GameObject.Find("Swipe");
+        diceButton = GameObject.Find("DiceButton");
+    }
+
+    private void Update() {
+        if (pointerDown) {
+            _touchTimer += Time.deltaTime;
+            print(_touchTimer);
+        }
     }
 
     public void OpenDiceRollerForStat() {
+        if (Int32.Parse(stat.text) - 1 >= 10) return;
         diceMenu.SetActive(true);
         diceSwipeBar.SetActive(true);
         swipeToRoll.SetActive(true);
-        numDice.text = statDice.text[0].ToString();
-        typeDice.text = statDice.text.Substring(2);
+        diceButton.SetActive(false);
+        var die = dice[Int32.Parse(stat.text)-1];
+        numDice.text = die[0].ToString();
+        typeDice.text = die.Substring(2);
+
+    }
+
+
+    public void OnPointerDown(PointerEventData eventData) {
+        pointerDown = true;
+    }
+
+    public void OnPointerUp(PointerEventData eventData) {
+        if (_touchTimer > _secondsUntilEdit) {
+            stat.Select();
+        } else OpenDiceRollerForStat();
+
+        pointerDown = false;
+        _touchTimer = 0;
     }
 }

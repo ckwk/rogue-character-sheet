@@ -142,13 +142,14 @@ public class DiceSwiper : MonoBehaviour, IDragHandler, IEndDragHandler {
             explodedDice.Add(die);
             if (dieVal < 10000) die.transform.GetChild(0).GetComponent<Text>().text = dieVal.ToString();
             else die.transform.GetChild(0).GetComponent<Text>().text = "∞";
-            switch (die.transform.parent.name) {
-                case "d4" : die.GetComponent<Image>().overrideSprite = d4Gold; break;
-                case "d6" : die.GetComponent<Image>().overrideSprite = d6Gold; break;
-                case "d7" : die.GetComponent<Image>().overrideSprite = d7Gold; break;
-                case "d8" : die.GetComponent<Image>().overrideSprite = d8Gold; break;
-                case "d10" : die.GetComponent<Image>().overrideSprite = d10Gold; break;
-            }
+            die.GetComponent<Image>().overrideSprite = die.transform.parent.name switch {
+                "d4" => d4Gold,
+                "d6" => d6Gold,
+                "d7" => d7Gold,
+                "d8" => d8Gold,
+                "d10" => d10Gold,
+                _ => die.GetComponent<Image>().overrideSprite
+            };
         }
         totalRoll += dieVal;
         total.GetComponent<Text>().text = totalRoll < 10000 ? totalRoll.ToString() : "∞";

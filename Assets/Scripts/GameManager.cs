@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour {
     public static int currentScreen;
     private float count;
     private int frameCount;
-    private GameObject diceMenu, diceSwipeBar, swipeToRoll, saveBanner;
+    private GameObject diceMenu, diceSwipeBar, swipeToRoll, diceButton, saveBanner;
     private AudioSource mainAudio;
     public List<GameObject> pages;
     public AudioClip buttonPress, diceRoll;
@@ -71,6 +71,7 @@ public class GameManager : MonoBehaviour {
         diceMenu = GameObject.Find("DiceMenu");
         diceSwipeBar = GameObject.Find("DiceSwipeBar");
         swipeToRoll = GameObject.Find("Swipe");
+        diceButton = GameObject.Find("DiceButton");
         saveBanner = GameObject.Find("SaveBanner");
         diceMenu.SetActive(false);
         diceSwipeBar.SetActive(false);
@@ -311,6 +312,7 @@ public class GameManager : MonoBehaviour {
         diceMenu.SetActive(true);
         diceSwipeBar.SetActive(true);
         swipeToRoll.SetActive(true);
+        diceButton.SetActive(false);
     }
 
     public void GoUpDiceChain() {
