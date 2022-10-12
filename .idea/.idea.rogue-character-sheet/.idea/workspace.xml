@@ -23,12 +23,16 @@
       <change beforePath="$PROJECT_DIR$/.idea/.idea.rogue-character-sheet/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.rogue-character-sheet/.idea/indexLayout.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.rogue-character-sheet/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.rogue-character-sheet/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefabs/ArmourEntry.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/ArmourEntry.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/CorruptionEntry.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/CorruptionEntry.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/EquipmentEntry.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/EquipmentEntry.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/MutationEntry.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/MutationEntry.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/NoteEntry.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/NoteEntry.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/SpellEntry.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/SpellEntry.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/TraitEntry.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/TraitEntry.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefabs/WeaponEntry.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/WeaponEntry.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/DiceSwiper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/DiceSwiper.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/LoadFade.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/LoadFade.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/StatButton.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/StatButton.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI/diceButton.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/UI/diceButton.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,10 +54,10 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/PageSwiper.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/HandleEntries.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/VerticalScroll.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/StatButton.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/DiceSwiper.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/LoadFade.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/StatButton.cs" />
       </list>
     </option>
   </component>
@@ -105,6 +109,7 @@
       <workItem from="1664662997786" duration="1450000" />
       <workItem from="1665435509104" duration="12354000" />
       <workItem from="1665588387614" duration="4039000" />
+      <workItem from="1665592833810" duration="2491000" />
     </task>
     <servers />
   </component>

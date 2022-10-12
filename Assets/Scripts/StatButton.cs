@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -9,8 +10,8 @@ public class StatButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler 
     private Text typeDice;
     private InputField numDice;
     private GameObject diceMenu, diceSwipeBar, swipeToRoll, diceButton;
-    private float _touchTimer = 0f, _secondsUntilEdit = 1f;
-    private bool pointerDown = false;
+    private float _touchTimer = 0f, _secondsUntilEdit = 1f, vibrateTimer = 0f, _stopVibrate = 0.005f;
+    private bool pointerDown = false, hasNotVibrated = true;
     private string[] dice = {"1d4", "1d6", "1d7", "1d8", "1d10", "2d6", "2d7", "2d8", "2d10", "3d7"};
 
     private void Awake() {
@@ -23,9 +24,11 @@ public class StatButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler 
     }
 
     private void Update() {
-        if (pointerDown) {
-            _touchTimer += Time.deltaTime;
-            print(_touchTimer);
+        if (!pointerDown) return;
+        _touchTimer += Time.deltaTime;
+        if (_touchTimer > _secondsUntilEdit && hasNotVibrated) {
+            hasNotVibrated = false;
+            StartCoroutine(HapticPulse());
         }
     }
 
@@ -51,7 +54,16 @@ public class StatButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler 
             stat.Select();
         } else OpenDiceRollerForStat();
 
+        hasNotVibrated = true;
         pointerDown = false;
         _touchTimer = 0;
+    }
+
+    IEnumerator HapticPulse() {
+        while (vibrateTimer < _stopVibrate) {
+            vibrateTimer += Time.deltaTime;
+            Handheld.Vibrate();
+            yield return null;
+        }
     }
 }
