@@ -5645,7 +5645,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 222384300}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: SetCharacterStr
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7330,6 +7330,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccd0a3dff2d3896439b920d21a809554, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: -1
+  serializedEntries: []
   _entries: []
   entry: {fileID: 8464792081523800583, guid: 62ecadb3df636134a90365df6e2c1f2e, type: 3}
   fieldsBelow: []
@@ -7444,10 +7446,10 @@ RectTransform:
   m_Father: {fileID: 2131139476}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.845, y: 0.7485375}
-  m_AnchorMax: {x: 0.952, y: 0.79300004}
-  m_AnchoredPosition: {x: 1.454895, y: -243.41663}
-  m_SizeDelta: {x: -2.8733, y: -1.8315}
+  m_AnchorMin: {x: 0.84800005, y: 0.6361499}
+  m_AnchorMax: {x: 0.952, y: 0.679}
+  m_AnchoredPosition: {x: -0.04510498, y: 0.08337402}
+  m_SizeDelta: {x: 0.12669945, y: -0.8314972}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &165885180
 GameObject:
@@ -10264,15 +10266,8 @@ MonoBehaviour:
   diceRoll: {fileID: 8300000, guid: 0f1a7e9de881dfd429d229cfdf3057be, type: 3}
   currentCharacter:
     name: 
-    traits: 
-    bioNotes: 
     luckyRoll: 
     portraitPath: 
-    equipmentString: 
-    weaponString: 
-    armourString: 
-    spellsString: 
-    cAndMString: 
     lvl: 0
     hp: 0
     maxHp: 0
@@ -10285,32 +10280,38 @@ MonoBehaviour:
     intu: 0
     luc: 0
     sol: 0
+    equipment: []
+    weapons: []
+    armour: []
     spells: []
     mutations: []
     corruptions: []
+    traits: []
+    notes: []
   name: {fileID: 1753090880}
   inField: {fileID: 1106651639}
   numDice: {fileID: 0}
   activeTextBox: {fileID: 0}
   level: {fileID: 476729366}
-  hitpoints: {fileID: 1581554759}
-  maxHitpoints: {fileID: 1281155122}
-  ac: {fileID: 1248815518}
-  strength: {fileID: 1901445621}
-  dexterity: {fileID: 1786235466}
-  endurance: {fileID: 1137759466}
-  intelligence: {fileID: 212054829}
-  charisma: {fileID: 640202650}
-  intuition: {fileID: 143887218}
-  luck: {fileID: 1530137230}
+  hitpoints: {fileID: 2006363588}
+  maxHitpoints: {fileID: 488589775}
+  ac: {fileID: 596175054}
+  strength: {fileID: 2115648894}
+  dexterity: {fileID: 816013623}
+  endurance: {fileID: 1837779526}
+  intelligence: {fileID: 2129422654}
+  charisma: {fileID: 73609338}
+  intuition: {fileID: 162231374}
+  luck: {fileID: 1437610292}
   strokesOfLuck: {fileID: 2011703111}
-  traits: {fileID: 2084068065}
-  bioAndNotes: {fileID: 1070130068}
-  equipment: {fileID: 0}
-  weapons: {fileID: 1326729060}
-  armour: {fileID: 811992324}
-  spells: {fileID: 1457874441}
-  cAndM: {fileID: 1589046153}
+  equipment: {fileID: 814626240}
+  weapons: {fileID: 1492347505}
+  armour: {fileID: 938761845}
+  spells: {fileID: 407037856}
+  mutations: {fileID: 164625985}
+  corruptions: {fileID: 1473352583}
+  traits: {fileID: 1532978881}
+  notes: {fileID: 1429686716}
   hamburger: {fileID: 233973509}
   portrait: {fileID: 1003232408}
   defaultPortrait: {fileID: 2800000, guid: f157c27e8d7cfc74694b1ac103006c8b, type: 3}
@@ -16770,6 +16771,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccd0a3dff2d3896439b920d21a809554, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: -1
+  serializedEntries: []
   _entries: []
   entry: {fileID: 1917988499909887950, guid: 41042a262b1e95047b283e5f307041b2, type: 3}
   fieldsBelow:
@@ -19076,6 +19079,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccd0a3dff2d3896439b920d21a809554, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: -1
+  serializedEntries: []
   _entries: []
   entry: {fileID: 12712924188212818, guid: 18778e7ce2c8dc84f81fa892375c8a0a, type: 3}
   fieldsBelow:
@@ -19502,7 +19507,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 222384300}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: SetCharacterStr
+        m_MethodName: SetCharacterCha
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -21072,7 +21077,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.808, y: 0.24730694}
   m_AnchorMax: {x: 0.90663725, y: 0.8966744}
-  m_AnchoredPosition: {x: 1.539978, y: -0.03099823}
+  m_AnchoredPosition: {x: 1.539917, y: -0.03099823}
   m_SizeDelta: {x: -1.1699829, y: 0.1800003}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &514706143
@@ -21361,7 +21366,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &519384254
 RectTransform:
   m_ObjectHideFlags: 0
@@ -21378,8 +21383,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -1.3701172, y: 1.5999985}
-  m_SizeDelta: {x: 13.74, y: -14.11}
+  m_AnchoredPosition: {x: -1.3701172, y: -9.056}
+  m_SizeDelta: {x: 13.74, y: 7.2016}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &519384255
 MonoBehaviour:
@@ -21394,14 +21399,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.39215687}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: 2ddbd62a3e77cbb49b74f1ab9757b2fb, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -21999,7 +22004,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 222384300}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: SetCharacterStr
+        m_MethodName: SetCharacterDex
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -22605,7 +22610,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &543665536
 RectTransform:
   m_ObjectHideFlags: 0
@@ -27068,6 +27073,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 653550850}
   m_CullTransparentMesh: 1
+--- !u!114 &658784486 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3378505500621937610, guid: 18778e7ce2c8dc84f81fa892375c8a0a, type: 3}
+  m_PrefabInstance: {fileID: 3981298059676476852}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccd0a3dff2d3896439b920d21a809554, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &663132303
 GameObject:
   m_ObjectHideFlags: 0
@@ -27441,7 +27457,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 672588865}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -29969,7 +29985,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &733659701
 RectTransform:
   m_ObjectHideFlags: 0
@@ -32971,6 +32987,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccd0a3dff2d3896439b920d21a809554, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: -1
+  serializedEntries: []
   _entries: []
   entry: {fileID: 3378505501335736106, guid: 18778e7ce2c8dc84f81fa892375c8a0a, type: 3}
   fieldsBelow:
@@ -38445,6 +38463,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccd0a3dff2d3896439b920d21a809554, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: -1
+  serializedEntries: []
   _entries: []
   entry: {fileID: 1980722912517929180, guid: c2406738f3b78de4880cf4eb60218246, type: 3}
   fieldsBelow: []
@@ -40051,7 +40071,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 222384300}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: SetCharacterStr
+        m_MethodName: SetCharacterInt
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -40403,7 +40423,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1023410064
 RectTransform:
   m_ObjectHideFlags: 0
@@ -43898,7 +43918,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 222384300}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: SetCharacterStr
+        m_MethodName: SetCharacterLuc
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -48655,7 +48675,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 222384300}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: SetCharacterStr
+        m_MethodName: SetCharacterMaxHP
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -56918,6 +56938,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccd0a3dff2d3896439b920d21a809554, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: -1
+  serializedEntries: []
   _entries: []
   entry: {fileID: 1662090178190616842, guid: d17ca58b0363e5e4d9f43216412294ce, type: 3}
   fieldsBelow: []
@@ -58646,6 +58668,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccd0a3dff2d3896439b920d21a809554, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: -1
+  serializedEntries: []
   _entries: []
   entry: {fileID: 5425976096359814009, guid: 5e75ef102dcf8a042875a2ccf68f5bdb, type: 3}
   fieldsBelow:
@@ -59147,6 +59171,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccd0a3dff2d3896439b920d21a809554, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: -1
+  serializedEntries: []
   _entries: []
   entry: {fileID: 1028019533076369702, guid: d04c6cc7f6c18604991cd31d83ac2b07, type: 3}
   fieldsBelow:
@@ -60814,6 +60840,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccd0a3dff2d3896439b920d21a809554, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: -1
+  serializedEntries: []
   _entries: []
   entry: {fileID: 3099081852786851588, guid: 512fad4befbd4504ca5d9111e8725e56, type: 3}
   fieldsBelow:
@@ -63911,10 +63939,10 @@ RectTransform:
   m_Father: {fileID: 2131139476}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.052, y: 0.7503876}
-  m_AnchorMax: {x: 0.943, y: 0.77646255}
-  m_AnchoredPosition: {x: 2.5654602, y: -242.87549}
-  m_SizeDelta: {x: 2.2579308, y: 1.9127502}
+  m_AnchorMin: {x: 0.053000003, y: 0.638}
+  m_AnchorMax: {x: 0.94737893, y: 0.66446257}
+  m_AnchoredPosition: {x: 0.065460205, y: -1.3754883}
+  m_SizeDelta: {x: -0.74206924, y: 0.91275024}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1603766861
 MonoBehaviour:
@@ -64922,7 +64950,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 222384300}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: SetCharacterStr
+        m_MethodName: SetCharacterInu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -72656,7 +72684,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 222384300}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: SetCharacterStr
+        m_MethodName: SetCharacterHP
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -74388,7 +74416,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 222384300}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: SetCharacterStr
+        m_MethodName: SetCharacterEnd
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -77128,7 +77156,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 222384300}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: SetCharacterStr
+        m_MethodName: SetCharacterAC
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -79469,7 +79497,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.27058825, g: 0.3529412, b: 0.39215687, a: 1}
+  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -83921,6 +83949,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1290207964}
     m_Modifications:
+    - target: {fileID: 600052263, guid: 512fad4befbd4504ca5d9111e8725e56, type: 3}
+      propertyPath: handler
+      value: 
+      objectReference: {fileID: 1532978881}
     - target: {fileID: 3099081852786851588, guid: 512fad4befbd4504ca5d9111e8725e56, type: 3}
       propertyPath: m_Name
       value: TraitEntry
@@ -84031,6 +84063,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 940855925}
     m_Modifications:
+    - target: {fileID: 177910688236171900, guid: 41042a262b1e95047b283e5f307041b2, type: 3}
+      propertyPath: handler
+      value: 
+      objectReference: {fileID: 407037856}
     - target: {fileID: 1917988499282072366, guid: 41042a262b1e95047b283e5f307041b2, type: 3}
       propertyPath: handler
       value: 
@@ -84232,6 +84268,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6392635884774238513, guid: 18778e7ce2c8dc84f81fa892375c8a0a, type: 3}
+      propertyPath: parent
+      value: 
+      objectReference: {fileID: 658784486}
+    - target: {fileID: 6392635884774238513, guid: 18778e7ce2c8dc84f81fa892375c8a0a, type: 3}
+      propertyPath: handler
+      value: 
+      objectReference: {fileID: 814626240}
+    - target: {fileID: 7444171485327134017, guid: 18778e7ce2c8dc84f81fa892375c8a0a, type: 3}
+      propertyPath: parent
+      value: 
+      objectReference: {fileID: 658784486}
+    - target: {fileID: 7444171485327134017, guid: 18778e7ce2c8dc84f81fa892375c8a0a, type: 3}
+      propertyPath: handler
+      value: 
+      objectReference: {fileID: 814626240}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 18778e7ce2c8dc84f81fa892375c8a0a, type: 3}
 --- !u!1001 &4974422408277718986
@@ -84241,6 +84293,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1764969067}
     m_Modifications:
+    - target: {fileID: 491445991, guid: d04c6cc7f6c18604991cd31d83ac2b07, type: 3}
+      propertyPath: handler
+      value: 
+      objectReference: {fileID: 1492347505}
+    - target: {fileID: 804818398, guid: d04c6cc7f6c18604991cd31d83ac2b07, type: 3}
+      propertyPath: handler
+      value: 
+      objectReference: {fileID: 1492347505}
+    - target: {fileID: 1130120353, guid: d04c6cc7f6c18604991cd31d83ac2b07, type: 3}
+      propertyPath: handler
+      value: 
+      objectReference: {fileID: 1492347505}
+    - target: {fileID: 1397584533, guid: d04c6cc7f6c18604991cd31d83ac2b07, type: 3}
+      propertyPath: handler
+      value: 
+      objectReference: {fileID: 1492347505}
     - target: {fileID: 1028019533076369702, guid: d04c6cc7f6c18604991cd31d83ac2b07, type: 3}
       propertyPath: m_Name
       value: WeaponEntry
@@ -84447,6 +84515,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CorruptionEntry
       objectReference: {fileID: 0}
+    - target: {fileID: 7962513373222697058, guid: 5e75ef102dcf8a042875a2ccf68f5bdb, type: 3}
+      propertyPath: handler
+      value: 
+      objectReference: {fileID: 1473352583}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5e75ef102dcf8a042875a2ccf68f5bdb, type: 3}
 --- !u!1001 &7090941498845890690
@@ -84456,6 +84528,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2131139476}
     m_Modifications:
+    - target: {fileID: 2672377005061098839, guid: 62ecadb3df636134a90365df6e2c1f2e, type: 3}
+      propertyPath: handler
+      value: 
+      objectReference: {fileID: 164625985}
     - target: {fileID: 8464792080564338652, guid: 62ecadb3df636134a90365df6e2c1f2e, type: 3}
       propertyPath: handler
       value: 
@@ -84561,6 +84637,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1514040741}
     m_Modifications:
+    - target: {fileID: 328466289241258368, guid: c2406738f3b78de4880cf4eb60218246, type: 3}
+      propertyPath: handler
+      value: 
+      objectReference: {fileID: 938761845}
     - target: {fileID: 1980722912517929180, guid: c2406738f3b78de4880cf4eb60218246, type: 3}
       propertyPath: m_Name
       value: ArmourEntry
@@ -84657,6 +84737,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3103302834669383655, guid: c2406738f3b78de4880cf4eb60218246, type: 3}
+      propertyPath: handler
+      value: 
+      objectReference: {fileID: 938761845}
+    - target: {fileID: 3722157668962277392, guid: c2406738f3b78de4880cf4eb60218246, type: 3}
+      propertyPath: handler
+      value: 
+      objectReference: {fileID: 938761845}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c2406738f3b78de4880cf4eb60218246, type: 3}
 --- !u!224 &8464792080596989502 stripped

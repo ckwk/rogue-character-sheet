@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7867821456415371601}
   - component: {fileID: 426816033185680633}
   - component: {fileID: 6326415284192185791}
+  - component: {fileID: 3103302834669383655}
   m_Layer: 5
   m_Name: InputField
   m_TagString: Untagged
@@ -131,7 +132,19 @@ MonoBehaviour:
   m_CharacterLimit: 0
   m_OnEndEdit:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3103302834669383655}
+        m_TargetAssemblyTypeName: EntryField, Assembly-CSharp
+        m_MethodName: UpdateHandler
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_OnSubmit:
     m_PersistentCalls:
       m_Calls: []
@@ -146,6 +159,22 @@ MonoBehaviour:
   m_CaretWidth: 1
   m_ReadOnly: 0
   m_ShouldActivateOnSelect: 1
+--- !u!114 &3103302834669383655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 211855784342106234}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee5d30a029edc3e4b97b25d117271b7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  handler: {fileID: 0}
+  parent: {fileID: 1980722912537869575}
+  index: 2
+  myText: {fileID: 5442395637365063360}
 --- !u!1 &895124283310492105
 GameObject:
   m_ObjectHideFlags: 0
@@ -566,6 +595,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccd0a3dff2d3896439b920d21a809554, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 0
+  serializedEntries: []
   _entries: []
   entry: {fileID: 0}
   fieldsBelow: []
@@ -583,6 +614,7 @@ GameObject:
   - component: {fileID: 1980722913081084407}
   - component: {fileID: 1980722913081084406}
   - component: {fileID: 1980722913081084405}
+  - component: {fileID: 328466289241258368}
   m_Layer: 5
   m_Name: InputField
   m_TagString: Untagged
@@ -702,7 +734,19 @@ MonoBehaviour:
   m_CharacterLimit: 0
   m_OnEndEdit:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 328466289241258368}
+        m_TargetAssemblyTypeName: EntryField, Assembly-CSharp
+        m_MethodName: UpdateHandler
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_OnSubmit:
     m_PersistentCalls:
       m_Calls: []
@@ -717,6 +761,22 @@ MonoBehaviour:
   m_CaretWidth: 1
   m_ReadOnly: 0
   m_ShouldActivateOnSelect: 1
+--- !u!114 &328466289241258368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1980722913081084411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee5d30a029edc3e4b97b25d117271b7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  handler: {fileID: 0}
+  parent: {fileID: 1980722912537869575}
+  index: 0
+  myText: {fileID: 1980722912528684883}
 --- !u!1 &1980722913753535352
 GameObject:
   m_ObjectHideFlags: 0
@@ -887,6 +947,7 @@ GameObject:
   - component: {fileID: 6117567989945365017}
   - component: {fileID: 2795043124576820389}
   - component: {fileID: 5183436561798371401}
+  - component: {fileID: 3722157668962277392}
   m_Layer: 5
   m_Name: InputField
   m_TagString: Untagged
@@ -1006,7 +1067,19 @@ MonoBehaviour:
   m_CharacterLimit: 0
   m_OnEndEdit:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3722157668962277392}
+        m_TargetAssemblyTypeName: EntryField, Assembly-CSharp
+        m_MethodName: UpdateHandler
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_OnSubmit:
     m_PersistentCalls:
       m_Calls: []
@@ -1021,6 +1094,22 @@ MonoBehaviour:
   m_CaretWidth: 1
   m_ReadOnly: 0
   m_ShouldActivateOnSelect: 1
+--- !u!114 &3722157668962277392
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2084696306549301704}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee5d30a029edc3e4b97b25d117271b7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  handler: {fileID: 0}
+  parent: {fileID: 1980722912537869575}
+  index: 1
+  myText: {fileID: 7987768440016794636}
 --- !u!1 &2575383995183916998
 GameObject:
   m_ObjectHideFlags: 0

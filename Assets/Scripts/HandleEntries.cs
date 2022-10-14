@@ -1,22 +1,25 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.XR;
 
 public class HandleEntries : MonoBehaviour {
     private int _numEntries;
     private float offset = 0.05f*Screen.height;
+    public int index = -1;
+    public List<string> serializedEntries;
     public List<RectTransform> _entries;
     public GameObject entry;
     public List<RectTransform> fieldsBelow;
     public HandleEntries handler;
     public VerticalScroll scroller;
 
+    private void Awake() {
+        serializedEntries = new List<string> {"|||"};
+    }
+
     public void Start() {
+        serializedEntries = new List<string> {"|||"};
         _numEntries = 1;
-        if (!handler.gameObject) return;
-        
+        if (!handler) return;
         handler._entries.Add(gameObject.GetComponent<RectTransform>());
         if (handler.fieldsBelow.Count < 1) scroller.lowestEntry = gameObject.GetComponent<RectTransform>();
     }
@@ -24,8 +27,11 @@ public class HandleEntries : MonoBehaviour {
     // used by the top level add button
     public void CreateEntry() {
         var newEntry = Instantiate(entry, transform.parent, false);
-        newEntry.transform.GetChild(1).GetComponent<HandleEntries>().handler = this;
-        newEntry.transform.GetChild(1).GetComponent<HandleEntries>().scroller = scroller;
+        var entryScript = newEntry.transform.GetChild(1).GetComponent<HandleEntries>();
+        entryScript.handler = this;
+        entryScript.scroller = scroller;
+        entryScript.index = _numEntries;
+        serializedEntries.Add("|||");
 
         var rTrans = newEntry.GetComponent<RectTransform>();
         var anchoredPos = rTrans.anchoredPosition;
@@ -68,4 +74,6 @@ public class HandleEntries : MonoBehaviour {
         handler._entries.Remove(myTrans);
         Destroy(transform.parent.gameObject);
     }
+
+
 }

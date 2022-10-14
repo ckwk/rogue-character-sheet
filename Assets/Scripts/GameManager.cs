@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour {
     public static int currentScreen;
     private float count;
     private int frameCount;
-    private GameObject diceMenu, diceSwipeBar, swipeToRoll, diceButton, saveBanner;
+    private GameObject diceMenu, diceSwipeBar, swipeToRoll, diceButton, saveBanner, statsPage, characterPage, equipmentPage, magicPage;
     private AudioSource mainAudio;
     public List<GameObject> pages;
     public AudioClip buttonPress, diceRoll;
@@ -33,15 +33,9 @@ public class GameManager : MonoBehaviour {
         charisma,
         intuition,
         luck,
-        strokesOfLuck,
-        traits,
-        bioAndNotes,
-        equipment,
-        weapons,
-        armour,
-        spells,
-        cAndM;
-
+        strokesOfLuck;
+    
+    public HandleEntries equipment, weapons, armour, spells, mutations, corruptions, traits, notes;
     public Dropdown hamburger;
     public Image portrait;
     public Texture2D defaultPortrait;
@@ -72,18 +66,25 @@ public class GameManager : MonoBehaviour {
         diceSwipeBar = GameObject.Find("DiceSwipeBar");
         swipeToRoll = GameObject.Find("Swipe");
         diceButton = GameObject.Find("DiceButton");
+        statsPage = GameObject.Find("Stats");
+        characterPage = GameObject.Find("Character");
+        equipmentPage = GameObject.Find("Equipment");
+        magicPage = GameObject.Find("Magic");
         saveBanner = GameObject.Find("SaveBanner");
         diceMenu.SetActive(false);
         diceSwipeBar.SetActive(false);
         swipeToRoll.SetActive(false);
+        characterPage.SetActive(false);
+        equipmentPage.SetActive(false);
+        magicPage.SetActive(false);
         if (PlayerPrefs.HasKey("lastFile")) {
             LoadCharacter(PlayerPrefs.GetString("lastFile"));
             return;
         }
+        SetCharacterCandM();
+        SetCharacterMutations();
         SetCharacterName();
         SetCharacterLevel();
-        SetCharacterTraits();
-        SetCharacterBioAndNotes();
         SetCharacterStr();
         SetCharacterDex();
         SetCharacterEnd();
@@ -95,11 +96,12 @@ public class GameManager : MonoBehaviour {
         SetCharacterHP();
         SetCharacterMaxHP();
         SetCharacterAC();
+        SetCharacterTraits();
+        SetCharacterBioAndNotes();
         SetCharacterEquipment();
         SetCharacterWeapons();
         SetCharacterArmour();
         SetCharacterSpells();
-        SetCharacterCandM();
         SaveCharacter();
     }
 
@@ -131,12 +133,12 @@ public class GameManager : MonoBehaviour {
     }
 
     public void SetCharacterTraits() {
-        currentCharacter.traits = traits.text;
+        currentCharacter.traits = traits.serializedEntries;
         SetUnsavedChanges(true);
     }
 
     public void SetCharacterBioAndNotes() {
-        currentCharacter.bioNotes = bioAndNotes.text;
+        currentCharacter.notes = notes.serializedEntries;
         SetUnsavedChanges(true);
     }
 
@@ -201,27 +203,32 @@ public class GameManager : MonoBehaviour {
     }
 
     public void SetCharacterEquipment() {
-        currentCharacter.equipmentString = equipment.text; 
+        currentCharacter.equipment = equipment.serializedEntries;
         SetUnsavedChanges(true);
     }
 
     public void SetCharacterWeapons() {
-        currentCharacter.weaponString = weapons.text; 
+        currentCharacter.weapons = weapons.serializedEntries; 
         SetUnsavedChanges(true);
     }
 
     public void SetCharacterArmour() {
-        currentCharacter.armourString = armour.text; 
+        currentCharacter.armour = armour.serializedEntries; 
         SetUnsavedChanges(true);
     }
 
     public void SetCharacterSpells() {
-        currentCharacter.spellsString = spells.text; 
+        currentCharacter.spells = spells.serializedEntries; 
         SetUnsavedChanges(true);
     }
 
     public void SetCharacterCandM() {
-        currentCharacter.cAndMString = cAndM.text; 
+        currentCharacter.corruptions = corruptions.serializedEntries;
+        SetUnsavedChanges(true);
+    }
+
+    public void SetCharacterMutations() {
+        currentCharacter.mutations = mutations.serializedEntries;
         SetUnsavedChanges(true);
     }
 
@@ -241,8 +248,8 @@ public class GameManager : MonoBehaviour {
         portrait.sprite = Sprite.Create(texture, 
             new Rect(0,texture.height - smallestDim, smallestDim, smallestDim), new Vector2(0.5f, 0.5f));
     }
-    public void SetUITraits() { traits.text = currentCharacter.traits; }
-    public void SetUIBioAndNotes() { bioAndNotes.text = currentCharacter.bioNotes; }
+    public void SetUITraits() { traits.serializedEntries = currentCharacter.traits; }
+    public void SetUIBioAndNotes() { notes.serializedEntries = currentCharacter.notes; }
     public void SetUILevel() { levelF.text = currentCharacter.lvl.ToString(); }
     public void SetUIHP() { hitpointsF.text = currentCharacter.hp.ToString(); }
     public void SetUIMaxHP() { maxHitpointsF.text = currentCharacter.maxHp.ToString(); }
@@ -255,11 +262,15 @@ public class GameManager : MonoBehaviour {
     public void SetUIInu() { intuitionF.text = currentCharacter.intu.ToString(); }
     public void SetUILuc() { luckF.text = currentCharacter.luc.ToString(); }
     public void SetUISol() { strokesOfLuck.text = currentCharacter.sol.ToString(); }
-    public void SetUIEquipment() { equipment.text = currentCharacter.equipmentString; }
-    public void SetUIWeapons() { weapons.text = currentCharacter.weaponString; }
-    public void SetUIArmour() { armour.text = currentCharacter.armourString; }
-    public void SetUISpells() { spells.text = currentCharacter.spellsString; }
-    public void SetUICorruptionsMutations() { cAndM.text = currentCharacter.cAndMString; }
+    public void SetUIEquipment() { equipment.serializedEntries = currentCharacter.equipment; }
+    public void SetUIWeapons() { weapons.serializedEntries = currentCharacter.weapons; }
+    public void SetUIArmour() { armour.serializedEntries = currentCharacter.armour; }
+    public void SetUISpells() { spells.serializedEntries = currentCharacter.spells; }
+
+    public void SetUICorruptionsMutations() {
+        corruptions.serializedEntries = currentCharacter.corruptions;
+        mutations.serializedEntries = currentCharacter.mutations;
+    }
 
     public void SaveCharacter() {
         SaveSystem.Save(currentCharacter);
@@ -363,11 +374,15 @@ public class GameManager : MonoBehaviour {
 }
 
 [Serializable]
+public class NestedList {
+    public List<string> properties;
+}
+
+[Serializable]
 public class Character {
-    public string name, traits, bioNotes, luckyRoll, portraitPath, equipmentString, weaponString, armourString, spellsString, cAndMString;
+    public string name, luckyRoll, portraitPath;
     public int lvl, hp, maxHp, ac, str, dex, end, intl, cha, intu, luc, sol;
-    public List<string>[] equipment;
-    public string[] spells, mutations, corruptions;
+    public List<string> equipment, weapons, armour, spells, mutations, corruptions, traits, notes;
 }
 
 public static class SaveSystem {

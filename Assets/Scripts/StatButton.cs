@@ -27,8 +27,8 @@ public class StatButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler 
         if (!pointerDown) return;
         _touchTimer += Time.deltaTime;
         if (_touchTimer > _secondsUntilEdit && hasNotVibrated) {
+            Vibration.Vibrate(100);
             hasNotVibrated = false;
-            StartCoroutine(HapticPulse());
         }
     }
 
@@ -57,13 +57,5 @@ public class StatButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler 
         hasNotVibrated = true;
         pointerDown = false;
         _touchTimer = 0;
-    }
-
-    IEnumerator HapticPulse() {
-        while (vibrateTimer < _stopVibrate) {
-            vibrateTimer += Time.deltaTime;
-            Handheld.Vibrate();
-            yield return null;
-        }
     }
 }
