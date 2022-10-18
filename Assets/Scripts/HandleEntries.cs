@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class HandleEntries : MonoBehaviour {
     private int _numEntries;
@@ -14,11 +15,11 @@ public class HandleEntries : MonoBehaviour {
 
     private void Awake() {
         serializedEntries = new List<string> {"|||"};
+        _numEntries = 1;
     }
 
     public void Start() {
         serializedEntries = new List<string> {"|||"};
-        _numEntries = 1;
         if (!handler) return;
         handler._entries.Add(gameObject.GetComponent<RectTransform>());
         if (handler.fieldsBelow.Count < 1) scroller.lowestEntry = gameObject.GetComponent<RectTransform>();
@@ -33,6 +34,35 @@ public class HandleEntries : MonoBehaviour {
         entryScript.index = _numEntries;
         serializedEntries.Add("|||");
 
+        var rTrans = newEntry.GetComponent<RectTransform>();
+        var anchoredPos = rTrans.anchoredPosition;
+        anchoredPos = new Vector2(anchoredPos.x,anchoredPos.y - _numEntries*offset);
+        rTrans.anchoredPosition = anchoredPos;
+
+        foreach (var field in fieldsBelow) {
+            anchoredPos = field.anchoredPosition;
+            anchoredPos = new Vector2(anchoredPos.x,anchoredPos.y - offset);
+            field.anchoredPosition = anchoredPos;
+        }
+
+        scroller.numEntries++;
+        _numEntries++;
+    }
+
+    public void LoadEntry(string[] parameters) {
+        var newEntry = Instantiate(entry, transform.parent, false);
+        var fieldIndex = 0;
+        foreach (Transform field in newEntry.transform) {
+            if (field == newEntry.transform.GetChild(1) || field.name == "Roll") continue;
+            var fieldText = field.GetChild(0).GetComponent<InputField>();
+            fieldText.text = parameters[fieldIndex];
+            fieldIndex++;
+        }
+        var entryScript = newEntry.transform.GetChild(1).GetComponent<HandleEntries>();
+        entryScript.handler = this;
+        entryScript.scroller = scroller;
+        entryScript.index = _numEntries;
+        
         var rTrans = newEntry.GetComponent<RectTransform>();
         var anchoredPos = rTrans.anchoredPosition;
         anchoredPos = new Vector2(anchoredPos.x,anchoredPos.y - _numEntries*offset);
@@ -75,5 +105,23 @@ public class HandleEntries : MonoBehaviour {
         Destroy(transform.parent.gameObject);
     }
 
+    // Used by top level button to load entrys
+    public void LoadEntries() {
+        transform.parent.GetChild(2).GetChild(1).GetComponent<HandleEntries>().DeleteEntry();
+        foreach (var e in serializedEntries) {
+            var mutableEntry = e;
+            for (var i = 1; i < 4; i++) {
+                if (e.Substring(e.Length - i)[0] != '|') {
+                    if (i == 1) break;
+                    mutableEntry = e.Remove(e.Length - (i - 1));
+                    break;
+                }
+
+                mutableEntry = e.Remove(e.Length - 3);
+            }
+
+            LoadEntry(mutableEntry.Split('|'));
+        }
+    }
 
 }

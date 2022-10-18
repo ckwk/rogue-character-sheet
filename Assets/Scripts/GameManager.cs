@@ -248,8 +248,16 @@ public class GameManager : MonoBehaviour {
         portrait.sprite = Sprite.Create(texture, 
             new Rect(0,texture.height - smallestDim, smallestDim, smallestDim), new Vector2(0.5f, 0.5f));
     }
-    public void SetUITraits() { traits.serializedEntries = currentCharacter.traits; }
-    public void SetUIBioAndNotes() { notes.serializedEntries = currentCharacter.notes; }
+
+    public void SetUITraits() {
+        traits.serializedEntries = currentCharacter.traits;
+        traits.LoadEntries();
+    }
+
+    public void SetUIBioAndNotes() {
+        notes.serializedEntries = currentCharacter.notes;
+        notes.LoadEntries();
+    }
     public void SetUILevel() { levelF.text = currentCharacter.lvl.ToString(); }
     public void SetUIHP() { hitpointsF.text = currentCharacter.hp.ToString(); }
     public void SetUIMaxHP() { maxHitpointsF.text = currentCharacter.maxHp.ToString(); }
@@ -262,14 +270,32 @@ public class GameManager : MonoBehaviour {
     public void SetUIInu() { intuitionF.text = currentCharacter.intu.ToString(); }
     public void SetUILuc() { luckF.text = currentCharacter.luc.ToString(); }
     public void SetUISol() { strokesOfLuck.text = currentCharacter.sol.ToString(); }
-    public void SetUIEquipment() { equipment.serializedEntries = currentCharacter.equipment; }
-    public void SetUIWeapons() { weapons.serializedEntries = currentCharacter.weapons; }
-    public void SetUIArmour() { armour.serializedEntries = currentCharacter.armour; }
-    public void SetUISpells() { spells.serializedEntries = currentCharacter.spells; }
+
+    public void SetUIEquipment() {
+        equipment.serializedEntries = currentCharacter.equipment;
+        equipment.LoadEntries();
+    }
+
+    public void SetUIWeapons() {
+        weapons.serializedEntries = currentCharacter.weapons;
+        weapons.LoadEntries();
+    }
+
+    public void SetUIArmour() {
+        armour.serializedEntries = currentCharacter.armour;
+        armour.LoadEntries();
+    }
+
+    public void SetUISpells() {
+        spells.serializedEntries = currentCharacter.spells;
+        spells.LoadEntries();
+    }
 
     public void SetUICorruptionsMutations() {
         corruptions.serializedEntries = currentCharacter.corruptions;
+        corruptions.LoadEntries();
         mutations.serializedEntries = currentCharacter.mutations;
+        mutations.LoadEntries();
     }
 
     public void SaveCharacter() {

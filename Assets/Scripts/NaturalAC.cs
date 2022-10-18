@@ -3,11 +3,11 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class NaturalAC : MonoBehaviour {
-    private Text dex, myText;
+    private InputField dex, myText;
 
     private void Start() {
-        dex = GameObject.Find("Dexterity").transform.GetChild(1).GetChild(0).GetChild(0).GetComponent<Text>();
-        myText = GetComponent<Text>();
+        dex = GameObject.Find("Dexterity").transform.GetChild(0).GetComponent<InputField>();
+        myText = GetComponent<InputField>();
     }
 
     private void Update() {
