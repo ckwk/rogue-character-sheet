@@ -7,16 +7,16 @@ using UnityEngine.UIElements;
 
 public class StatButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler {
     public InputField stat;
-    private Text typeDice;
+    private Dropdown typeDice;
     private InputField numDice;
     private GameObject diceMenu, diceSwipeBar, swipeToRoll, diceButton;
-    private float _touchTimer = 0f, _secondsUntilEdit = 1f, vibrateTimer = 0f, _stopVibrate = 0.005f;
+    private float _touchTimer = 0f, _secondsUntilEdit = 1f;
     private bool pointerDown = false, hasNotVibrated = true;
     private string[] dice = {"1d4", "1d6", "1d7", "1d8", "1d10", "2d6", "2d7", "2d8", "2d10", "3d7"};
 
     private void Awake() {
         numDice = GameObject.Find("Number").GetComponent<InputField>();
-        typeDice = GameObject.Find("TypeDice").transform.GetChild(0).GetComponent<Text>();
+        typeDice = GameObject.Find("TypeDice").transform.GetComponent<Dropdown>();
         diceMenu = GameObject.Find("DiceMenu");
         diceSwipeBar = GameObject.Find("DiceSwipeBar");
         swipeToRoll = GameObject.Find("Swipe");
@@ -39,9 +39,13 @@ public class StatButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler 
         swipeToRoll.SetActive(true);
         diceButton.SetActive(false);
         var die = dice[Int32.Parse(stat.text)-1];
+        print(die);
         numDice.text = die[0].ToString();
-        typeDice.text = die.Substring(2);
-
+        var index = 0;
+        foreach (var option in typeDice.options) {
+            if (option.text == die.Substring(2)) typeDice.value = index;
+            index++;
+        }
     }
 
 
