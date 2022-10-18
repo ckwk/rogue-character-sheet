@@ -15,7 +15,6 @@ public class EntryField : MonoBehaviour {
     }
 
     public void UpdateHandler() {
-        print(index);
         var properties = handler.serializedEntries[parent.index].Split('|');
         properties[index] = myText.text;
         handler.serializedEntries[parent.index] = string.Join("|", properties);

@@ -79,6 +79,7 @@ public class GameManager : MonoBehaviour {
         magicPage.SetActive(false);
         if (PlayerPrefs.HasKey("lastFile")) {
             LoadCharacter(PlayerPrefs.GetString("lastFile"));
+            saveBanner.GetComponent<SaveBanner>().Disappear();
             return;
         }
         SetCharacterCandM();
@@ -124,7 +125,7 @@ public class GameManager : MonoBehaviour {
 
     private void SetUnsavedChanges(bool val) {
         UnsavedChanges = val;
-        // if (val) StartCoroutine(saveBanner.GetComponent<SaveBanner>().Slide(val));
+        if (val) saveBanner.GetComponent<SaveBanner>().Appear();
     }
 
     public void SetCharacterName() {
@@ -326,6 +327,8 @@ public class GameManager : MonoBehaviour {
         SetUIArmour();
         SetUISpells();
         SetUICorruptionsMutations();
+        SetUnsavedChanges(false);
+        saveBanner.GetComponent<SaveBanner>().Disappear();
     }
 
     public void ResetHamburger() {

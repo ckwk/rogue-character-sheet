@@ -20,9 +20,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3762257f-2626-4ee4-ae2e-3f4871c89576" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.rogue-character-sheet/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.rogue-character-sheet/.idea/indexLayout.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.rogue-character-sheet/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.rogue-character-sheet/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/ArmourEntry.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/ArmourEntry.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/CorruptionEntry.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/CorruptionEntry.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/EquipmentEntry.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/EquipmentEntry.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/MutationEntry.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/MutationEntry.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/NoteEntry.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/NoteEntry.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/SpellEntry.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/SpellEntry.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/TraitEntry.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/TraitEntry.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/WeaponEntry.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/WeaponEntry.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/StatButton.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/StatButton.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/EntryField.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/EntryField.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/HandleEntries.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/HandleEntries.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/SaveBanner.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/SaveBanner.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,12 +59,13 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/DiceSwiper.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/LoadFade.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/VerticalScroll.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/EntryField.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Vibration.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/HandleEntries.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/NaturalAC.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/StatButton.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/SaveBanner.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/EntryField.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/HandleEntries.cs" />
       </list>
     </option>
   </component>
@@ -110,7 +123,7 @@
       <workItem from="1665588387614" duration="4039000" />
       <workItem from="1665592833810" duration="2491000" />
       <workItem from="1665615767751" duration="7335000" />
-      <workItem from="1665677758339" duration="19254000" />
+      <workItem from="1665677758339" duration="24133000" />
     </task>
     <servers />
   </component>

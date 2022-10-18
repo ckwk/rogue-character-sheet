@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class HandleEntries : MonoBehaviour {
     private int _numEntries;
     private float offset = 0.05f*Screen.height;
+    private GameManager _gm;
     public int index = -1;
     public List<string> serializedEntries;
     public List<RectTransform> _entries;
@@ -16,10 +17,11 @@ public class HandleEntries : MonoBehaviour {
     private void Awake() {
         serializedEntries = new List<string> {"|||"};
         _numEntries = 1;
+        _gm = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     public void Start() {
-        serializedEntries = new List<string> {"|||"};
+        //serializedEntries = new List<string> {"|||"};
         if (!handler) return;
         handler._entries.Add(gameObject.GetComponent<RectTransform>());
         if (handler.fieldsBelow.Count < 1) scroller.lowestEntry = gameObject.GetComponent<RectTransform>();
@@ -55,7 +57,7 @@ public class HandleEntries : MonoBehaviour {
         foreach (Transform field in newEntry.transform) {
             if (field == newEntry.transform.GetChild(1) || field.name == "Roll") continue;
             var fieldText = field.GetChild(0).GetComponent<InputField>();
-            fieldText.text = parameters[fieldIndex];
+            if (fieldIndex < parameters.Length) fieldText.text = parameters[fieldIndex];
             fieldIndex++;
         }
         var entryScript = newEntry.transform.GetChild(1).GetComponent<HandleEntries>();
@@ -80,6 +82,11 @@ public class HandleEntries : MonoBehaviour {
 
     // used by the entries themselves (in the delete button)
     public void DeleteEntry() {
+        RemoveEntryForLoadAndOtherThings();
+        handler.serializedEntries.RemoveAt(index);
+    }
+
+    public void RemoveEntryForLoadAndOtherThings() {
         var myTrans = gameObject.GetComponent<RectTransform>();
         var below = false;
         handler._numEntries--;
@@ -100,14 +107,24 @@ public class HandleEntries : MonoBehaviour {
             anchoredPos = new Vector2(anchoredPos.x,anchoredPos.y + offset);
             field.anchoredPosition = anchoredPos;
         }
-        
+
         handler._entries.Remove(myTrans);
         Destroy(transform.parent.gameObject);
     }
 
+    public void SetEverything() {
+        _gm.SetCharacterArmour();
+        _gm.SetCharacterEquipment();
+        _gm.SetCharacterSpells();
+        _gm.SetCharacterTraits();
+        _gm.SetCharacterWeapons();
+        _gm.SetCharacterCandM();
+        _gm.SetCharacterBioAndNotes();
+    }
+
     // Used by top level button to load entrys
     public void LoadEntries() {
-        transform.parent.GetChild(2).GetChild(1).GetComponent<HandleEntries>().DeleteEntry();
+        transform.parent.GetChild(2).GetChild(1).GetComponent<HandleEntries>().RemoveEntryForLoadAndOtherThings();
         foreach (var e in serializedEntries) {
             var mutableEntry = e;
             for (var i = 1; i < 4; i++) {
@@ -119,7 +136,6 @@ public class HandleEntries : MonoBehaviour {
 
                 mutableEntry = e.Remove(e.Length - 3);
             }
-
             LoadEntry(mutableEntry.Split('|'));
         }
     }
