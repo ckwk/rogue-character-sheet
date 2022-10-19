@@ -129,8 +129,8 @@ public class GameManager : MonoBehaviour {
     }
 
     public void SetCharacterName() {
-        if (name.text == currentCharacter.name) return;
-        currentCharacter.name = name.text;
+        if (name.text.Trim('\u200B') == currentCharacter.name) return;
+        currentCharacter.name = name.text.Trim('\u200B');
         SetUnsavedChanges(true);
     }
 
