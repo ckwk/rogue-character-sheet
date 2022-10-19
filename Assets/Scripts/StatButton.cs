@@ -27,7 +27,7 @@ public class StatButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler 
         if (!pointerDown) return;
         _touchTimer += Time.deltaTime;
         if (_touchTimer > _secondsUntilEdit && hasNotVibrated) {
-            Vibration.Vibrate(100);
+            Vibration.Vibrate(50);
             hasNotVibrated = false;
         }
     }

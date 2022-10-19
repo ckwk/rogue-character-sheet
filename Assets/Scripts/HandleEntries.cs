@@ -83,6 +83,9 @@ public class HandleEntries : MonoBehaviour {
     // used by the entries themselves (in the delete button)
     public void DeleteEntry() {
         RemoveEntryForLoadAndOtherThings();
+        if (handler.serializedEntries[index] != "|||") {
+            SetEverything();
+        }
         handler.serializedEntries.RemoveAt(index);
     }
 

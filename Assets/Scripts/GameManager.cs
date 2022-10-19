@@ -129,6 +129,7 @@ public class GameManager : MonoBehaviour {
     }
 
     public void SetCharacterName() {
+        if (name.text == currentCharacter.name) return;
         currentCharacter.name = name.text;
         SetUnsavedChanges(true);
     }
@@ -144,61 +145,73 @@ public class GameManager : MonoBehaviour {
     }
 
     public void SetCharacterLevel() {
+        if (int.Parse(level.text) == currentCharacter.lvl) return;
         currentCharacter.lvl = int.Parse(level.text);
         SetUnsavedChanges(true);
     }
 
     public void SetCharacterHP() {
+        if (int.Parse(hitpoints.text) == currentCharacter.hp) return;
         currentCharacter.hp = int.Parse(hitpoints.text);
         SetUnsavedChanges(true);
     }
 
     public void SetCharacterMaxHP() {
+        if (int.Parse(maxHitpoints.text) == currentCharacter.maxHp) return;
         currentCharacter.maxHp = int.Parse(maxHitpoints.text);
         SetUnsavedChanges(true);
     }
 
     public void SetCharacterAC() {
+        if (int.Parse(ac.text) == currentCharacter.ac) return;
         currentCharacter.ac = int.Parse(ac.text); 
         SetUnsavedChanges(true);
     }
 
     public void SetCharacterStr() {
+        if (int.Parse(strength.text) == currentCharacter.str) return;
         currentCharacter.str = int.Parse(strength.text);
         SetUnsavedChanges(true);
     }
 
     public void SetCharacterDex() {
+        if (int.Parse(dexterity.text) == currentCharacter.dex) return;
         currentCharacter.dex = int.Parse(dexterity.text); 
         SetUnsavedChanges(true);
     }
 
     public void SetCharacterEnd() {
+        if (int.Parse(endurance.text) == currentCharacter.end) return;
         currentCharacter.end = int.Parse(endurance.text); 
         SetUnsavedChanges(true);
     }
 
     public void SetCharacterInt() {
+        if (int.Parse(intelligence.text) == currentCharacter.intl) return;
         currentCharacter.intl = int.Parse(intelligence.text); 
         SetUnsavedChanges(true);
     }
 
     public void SetCharacterCha() {
+        if (int.Parse(charisma.text) == currentCharacter.cha) return;
         currentCharacter.cha = int.Parse(charisma.text); 
         SetUnsavedChanges(true);
     }
 
     public void SetCharacterInu() {
+        if (int.Parse(intuition.text) == currentCharacter.intu) return;
         currentCharacter.intu = int.Parse(intuition.text); 
         SetUnsavedChanges(true);
     }
 
     public void SetCharacterLuc() {
+        if (int.Parse(luck.text) == currentCharacter.luc) return;
         currentCharacter.luc = int.Parse(luck.text); 
         SetUnsavedChanges(true);
     }
 
     public void SetCharacterSol() {
+        if (int.Parse(strokesOfLuck.text) == currentCharacter.sol) return;
         currentCharacter.sol = int.Parse(strokesOfLuck.text); 
         SetUnsavedChanges(true);
     }

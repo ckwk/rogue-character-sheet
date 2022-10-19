@@ -34,7 +34,12 @@
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/EntryField.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/EntryField.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/HandleEntries.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/HandleEntries.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/SaveBanner.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/SaveBanner.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Textures/Logos/rogue-app-icon432-bg.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Textures/Logos/rogue-app-icon432-bg.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Textures/Logos/rogue-app-icon432-bg.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Textures/Logos/rogue-app-icon432-bg.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Textures/Logos/rogue_app_icon192.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Textures/Logos/rogue_app_icon192.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Textures/Logos/rogue_app_icon432.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Textures/Logos/rogue_app_icon432.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,9 +68,9 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/NaturalAC.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/StatButton.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/SaveBanner.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/HandleEntries.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/EntryField.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/HandleEntries.cs" />
       </list>
     </option>
   </component>
@@ -123,7 +128,8 @@
       <workItem from="1665588387614" duration="4039000" />
       <workItem from="1665592833810" duration="2491000" />
       <workItem from="1665615767751" duration="7335000" />
-      <workItem from="1665677758339" duration="24133000" />
+      <workItem from="1665677758339" duration="25030000" />
+      <workItem from="1666137231241" duration="818000" />
     </task>
     <servers />
   </component>

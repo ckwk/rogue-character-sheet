@@ -16,14 +16,16 @@ public class EntryField : MonoBehaviour {
 
     public void UpdateHandler() {
         var properties = handler.serializedEntries[parent.index].Split('|');
-        properties[index] = myText.text;
-        handler.serializedEntries[parent.index] = string.Join("|", properties);
-        _gm.SetCharacterArmour();
-        _gm.SetCharacterEquipment();
-        _gm.SetCharacterSpells();
-        _gm.SetCharacterTraits();
-        _gm.SetCharacterWeapons();
-        _gm.SetCharacterCandM();
-        _gm.SetCharacterBioAndNotes();
+        if (myText.text != properties[index]) {
+            properties[index] = myText.text;
+            handler.serializedEntries[parent.index] = string.Join("|", properties);
+            _gm.SetCharacterArmour();
+            _gm.SetCharacterEquipment();
+            _gm.SetCharacterSpells();
+            _gm.SetCharacterTraits();
+            _gm.SetCharacterWeapons();
+            _gm.SetCharacterCandM();
+            _gm.SetCharacterBioAndNotes();
+        }
     }
 }

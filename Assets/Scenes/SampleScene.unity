@@ -10326,7 +10326,7 @@ MonoBehaviour:
   traits: {fileID: 1532978881}
   notes: {fileID: 1429686716}
   hamburger: {fileID: 233973509}
-  portrait: {fileID: 1003232408}
+  portrait: {fileID: 672588868}
   defaultPortrait: {fileID: 2800000, guid: f157c27e8d7cfc74694b1ac103006c8b, type: 3}
   nameF: {fileID: 333429475}
   levelF: {fileID: 514706143}
@@ -27470,7 +27470,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 672588865}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
