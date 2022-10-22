@@ -20,13 +20,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3762257f-2626-4ee4-ae2e-3f4871c89576" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/API/Directory.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.rogue-character-sheet/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.rogue-character-sheet/.idea/indexLayout.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.rogue-character-sheet/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.rogue-character-sheet/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/Core.ini" beforeDir="false" afterPath="$PROJECT_DIR$/API/Core.ini" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/HandleEntries.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/HandleEntries.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/NavButton.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/NavButton.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/SaveBanner.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/SaveBanner.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/VerticalScroll.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/VerticalScroll.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,6 +79,7 @@
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
   </component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
@@ -119,6 +118,7 @@
       <workItem from="1666137231241" duration="3874000" />
       <workItem from="1666222562924" duration="1815000" />
       <workItem from="1666474015866" duration="1686000" />
+      <workItem from="1666478276515" duration="1279000" />
     </task>
     <servers />
   </component>

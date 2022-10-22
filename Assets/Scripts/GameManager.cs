@@ -1,13 +1,16 @@
 using System;
+using System.Collections;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Collections.Generic;
 using System.Globalization;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Networking;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
+    public static string repoURL = "https://raw.githubusercontent.com/ckwk/rogue-character-sheet/main/API/", directoryFile = "Directory.ini";
     public static bool EveryOtherFrame, EveryFourFrames, EveryEightFrames, Every32Frames, EverySecond;
     public static bool UnsavedChanges;
     public static int currentScreen;
@@ -463,6 +466,18 @@ public static class SaveSystem {
         }
         Debug.LogError("Save file not found in " + path);
         return null;
+    }
+
+    static IEnumerator ImportModules() {
+        using (UnityWebRequest directoryRequest = UnityWebRequest.Get(GameManager.repoURL + GameManager.directoryFile)) {
+            yield return directoryRequest.SendWebRequest();
+            if (directoryRequest.result != UnityWebRequest.Result.Success) {
+                Debug.Log(directoryRequest.error);
+            } else {
+                var directory = directoryRequest.downloadHandler.text;
+                Debug.Log(directory);
+            }
+        }
     }
 }
 
