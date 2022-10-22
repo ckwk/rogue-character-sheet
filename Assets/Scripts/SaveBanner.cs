@@ -5,7 +5,7 @@ public class SaveBanner : MonoBehaviour {
     private GameManager _gm;
     private Vector2 _startPos, _loweredPos;
     private bool alreadyActive;
-    private float _speed = 3f, offset = Screen.height * 0.035f;
+    private float _speed = 3f, offset = Screen.height * 0.045f;
 
     private void Awake() {
         _gm = GameObject.Find("GameManager").GetComponent<GameManager>();
@@ -37,7 +37,7 @@ public class SaveBanner : MonoBehaviour {
 
     public void Save() {
         _gm.SaveCharacter();
-        StartCoroutine(Slide(false));
+        //StartCoroutine(Slide(false));
         alreadyActive = false;
     }
 }

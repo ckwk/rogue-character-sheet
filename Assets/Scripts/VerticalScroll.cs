@@ -37,6 +37,10 @@ public class VerticalScroll : MonoBehaviour, IDragHandler, IEndDragHandler {
             
         panelLocation = view.position;
     }
+
+    public void ScrollUp() {
+        StartCoroutine(SmoothMove(view.position, startLocation, easing));
+    }
     
     IEnumerator SmoothMove(Vector3 start, Vector3 end, float seconds) {
         float t = 0f;

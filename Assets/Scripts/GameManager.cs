@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviour {
     private GameObject diceMenu, diceSwipeBar, swipeToRoll, diceButton, saveBanner, statsPage, characterPage, equipmentPage, magicPage;
     private AudioSource mainAudio;
     public List<GameObject> pages;
+    public List<Text> navText;
+    public List<Image> navIcons;
     public AudioClip buttonPress, diceRoll;
     public Character currentCharacter;
     public TMP_Text name;
@@ -123,9 +125,10 @@ public class GameManager : MonoBehaviour {
         }
     }
 
+    // set to saveBanner.Appear() for non auto-save
     private void SetUnsavedChanges(bool val) {
         UnsavedChanges = val;
-        if (val) saveBanner.GetComponent<SaveBanner>().Appear();
+        if (val) saveBanner.GetComponent<SaveBanner>().Save();
     }
 
     public void SetCharacterName() {
@@ -431,16 +434,23 @@ public static class SaveSystem {
     public static void Save(Character c) {
         var bf = new BinaryFormatter();
         var fName = DateTime.Now.ToString(new CultureInfo("en-GB"));
+        var directory = Application.persistentDataPath + "/" + c.name;
         fName = fName.Replace('/', '-').Replace(' ', '-').Replace(':', '-');
-        if (!Directory.Exists(Application.persistentDataPath + "/" + c.name))
-            Directory.CreateDirectory(Application.persistentDataPath + "/" + c.name);
-        var path = Application.persistentDataPath + "/" + c.name + "/" + fName + ".rog";
+        if (!Directory.Exists(directory))
+            Directory.CreateDirectory(directory);
+        var path = directory + "/" + fName + ".rog";
         var file = new FileStream(path, FileMode.Create);
         
         Debug.Log("Saving " + c.name + " to " + path);
         PlayerPrefs.SetString("lastFile", path);
         bf.Serialize(file, c);
         file.Close();
+        
+        //Delete up to max files
+        var maxFiles = 20;
+        var filesInDir = Directory.GetFiles(directory);
+        if (filesInDir.Length < maxFiles) return;
+        File.Delete(filesInDir[filesInDir.Length-1]);
     }
 
     public static Character Load(string path) {

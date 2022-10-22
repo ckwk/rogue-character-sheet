@@ -82,11 +82,12 @@ public class HandleEntries : MonoBehaviour {
 
     // used by the entries themselves (in the delete button)
     public void DeleteEntry() {
-        RemoveEntryForLoadAndOtherThings();
         if (handler.serializedEntries[index] != "|||") {
             SetEverything();
         }
         handler.serializedEntries.RemoveAt(index);
+        RemoveEntryForLoadAndOtherThings();
+        if (scroller.numEntries <= scroller.entriesUntilScroll) scroller.ScrollUp();
     }
 
     public void RemoveEntryForLoadAndOtherThings() {

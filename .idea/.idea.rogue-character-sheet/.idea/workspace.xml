@@ -20,8 +20,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3762257f-2626-4ee4-ae2e-3f4871c89576" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.rogue-character-sheet/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.rogue-character-sheet/.idea/indexLayout.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.rogue-character-sheet/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.rogue-character-sheet/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/HandleEntries.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/HandleEntries.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/NavButton.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/NavButton.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/SaveBanner.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/SaveBanner.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/VerticalScroll.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/VerticalScroll.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,17 +47,17 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/Assets/Scripts/LRScreen.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/NavButton.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/PageSwiper.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/DiceSwiper.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/LoadFade.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/VerticalScroll.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Vibration.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/NaturalAC.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/SaveBanner.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/HandleEntries.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/EntryField.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/StatButton.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/NavButton.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/SaveBanner.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/VerticalScroll.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/HandleEntries.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" />
       </list>
     </option>
@@ -112,6 +118,8 @@
       <workItem from="1665615767751" duration="7335000" />
       <workItem from="1665677758339" duration="25030000" />
       <workItem from="1666137231241" duration="3874000" />
+      <workItem from="1666222562924" duration="1815000" />
+      <workItem from="1666474015866" duration="1611000" />
     </task>
     <servers />
   </component>
