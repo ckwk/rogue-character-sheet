@@ -82,6 +82,7 @@ public class GameManager : MonoBehaviour {
         characterPage.SetActive(false);
         equipmentPage.SetActive(false);
         magicPage.SetActive(false);
+        StartCoroutine(SaveSystem.ImportModules());
         if (PlayerPrefs.HasKey("lastFile")) {
             LoadCharacter(PlayerPrefs.GetString("lastFile"));
             saveBanner.GetComponent<SaveBanner>().Disappear();
@@ -434,6 +435,7 @@ public class Character {
 }
 
 public static class SaveSystem {
+    private static Dictionary<string, List<string>> _modules = new Dictionary<string, List<string>>(), _components;
     public static void Save(Character c) {
         var bf = new BinaryFormatter();
         var fName = DateTime.Now.ToString(new CultureInfo("en-GB"));
@@ -453,7 +455,7 @@ public static class SaveSystem {
         var maxFiles = 20;
         var filesInDir = Directory.GetFiles(directory);
         if (filesInDir.Length < maxFiles) return;
-        File.Delete(filesInDir[filesInDir.Length-1]);
+        File.Delete(filesInDir[0]);
     }
 
     public static Character Load(string path) {
@@ -468,14 +470,43 @@ public static class SaveSystem {
         return null;
     }
 
-    static IEnumerator ImportModules() {
+    public static IEnumerator ImportModules() {
+        Debug.Log("fetching API");
         using (UnityWebRequest directoryRequest = UnityWebRequest.Get(GameManager.repoURL + GameManager.directoryFile)) {
             yield return directoryRequest.SendWebRequest();
             if (directoryRequest.result != UnityWebRequest.Result.Success) {
                 Debug.Log(directoryRequest.error);
             } else {
-                var directory = directoryRequest.downloadHandler.text;
-                Debug.Log(directory);
+                var directory = directoryRequest.downloadHandler.text.Replace("\r\n","\n");
+                
+                // compose our dictionary of modules
+                var directoryArray = directory.Split('\n');
+                _modules.Add(directoryArray[0], new List<string>());
+                for (var i = 1; i < directoryArray.Length; i++) {
+                    if (directoryArray[i].StartsWith("[")) continue; //TODO: expand for more module types
+                    _modules[directoryArray[0]].Add(directoryArray[i]);
+                }
+                
+                // download some modules
+                foreach (var section in _modules) {
+                    foreach (var module in section.Value) {
+                        Debug.Log(module);
+                        yield return FetchModule(module);
+                    }
+                }
+            }
+        }
+    }
+
+    static IEnumerator FetchModule(string module) {
+        Debug.Log(GameManager.repoURL + module);
+        using (UnityWebRequest moduleRequest = UnityWebRequest.Get(GameManager.repoURL + module)) {
+            yield return moduleRequest.SendWebRequest();
+            if (moduleRequest.result != UnityWebRequest.Result.Success) {
+                Debug.Log(moduleRequest.error);
+            } else {
+                var m = moduleRequest.downloadHandler.text.Replace("\r\n", "\n");
+                Debug.Log(m);
             }
         }
     }
