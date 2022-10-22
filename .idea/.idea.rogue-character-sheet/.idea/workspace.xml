@@ -20,7 +20,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3762257f-2626-4ee4-ae2e-3f4871c89576" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.rogue-character-sheet/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.rogue-character-sheet/.idea/indexLayout.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.rogue-character-sheet/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.rogue-character-sheet/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" afterDir="false" />
@@ -119,7 +118,7 @@
       <workItem from="1665677758339" duration="25030000" />
       <workItem from="1666137231241" duration="3874000" />
       <workItem from="1666222562924" duration="1815000" />
-      <workItem from="1666474015866" duration="1611000" />
+      <workItem from="1666474015866" duration="1686000" />
     </task>
     <servers />
   </component>
