@@ -5,6 +5,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Collections.Generic;
 using System.Globalization;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
@@ -435,7 +436,8 @@ public class Character {
 }
 
 public static class SaveSystem {
-    private static Dictionary<string, List<string>> _modules = new Dictionary<string, List<string>>(), _components;
+    private static Dictionary<string, List<string>> _modules = new Dictionary<string, List<string>>();
+    private static List<string> _spells = new List<string>(), _mutations = new List<string>(), _traits = new List<string>();
     public static void Save(Character c) {
         var bf = new BinaryFormatter();
         var fName = DateTime.Now.ToString(new CultureInfo("en-GB"));
@@ -483,32 +485,92 @@ public static class SaveSystem {
                 var directoryArray = directory.Split('\n');
                 _modules.Add(directoryArray[0], new List<string>());
                 for (var i = 1; i < directoryArray.Length; i++) {
-                    if (directoryArray[i].StartsWith("[")) continue; //TODO: expand for more module types
+                    if (directoryArray[i].StartsWith("[") || directoryArray[i] == "\n") continue; //TODO: expand for more module types
                     _modules[directoryArray[0]].Add(directoryArray[i]);
                 }
                 
                 // download some modules
                 foreach (var section in _modules) {
                     foreach (var module in section.Value) {
-                        Debug.Log(module);
+                        Debug.Log("fetching " + module);
                         yield return FetchModule(module);
                     }
                 }
+                
+                // load the components from the downloaded modules
+                yield return LoadSpells();
+                /*yield return LoadMutations();
+                yield return LoadTraits();*/
             }
         }
     }
 
     static IEnumerator FetchModule(string module) {
-        Debug.Log(GameManager.repoURL + module);
         using (UnityWebRequest moduleRequest = UnityWebRequest.Get(GameManager.repoURL + module)) {
             yield return moduleRequest.SendWebRequest();
             if (moduleRequest.result != UnityWebRequest.Result.Success) {
                 Debug.Log(moduleRequest.error);
             } else {
                 var m = moduleRequest.downloadHandler.text.Replace("\r\n", "\n");
-                Debug.Log(m);
+                
+                // compose our dictionary of spells, mutations, and traits
+                var moduleArray = m.Split('\n');
+                bool mutations = false, traits = false;
+                int mutationsIndex = 0, traitsIndex = 0;
+
+                for (var i = 1; i < moduleArray.Length; i++) {
+                    switch (moduleArray[i].Trim()) {
+                        case "": continue;
+                        case "[Traits]":
+                            traits = true;
+                            traitsIndex = i;
+                            continue;
+                        case "[Mutations]":
+                            mutations = true;
+                            mutationsIndex = i;
+                            continue;
+                    }
+
+                    if (traits) _traits.Add(moduleArray[i]);
+                    else if (mutations) _mutations.Add(moduleArray[i]);
+                    else _spells.Add(moduleArray[i]);
+                    Debug.Log("entered " + moduleArray[i]);
+                }
             }
         }
+    }
+
+    static IEnumerator LoadSpells() {
+        foreach (var spell in _spells) {
+            using (UnityWebRequest spellRequest = UnityWebRequest.Get(GameManager.repoURL + "/Spells/" + spell)) {
+                yield return spellRequest.SendWebRequest();
+                if (spellRequest.result != UnityWebRequest.Result.Success) {
+                    Debug.Log(spellRequest.error);
+                }
+                else {
+                    var s = ParseTSV(spellRequest.downloadHandler.text.Replace("\r\n", "\n"));
+
+                }
+            }
+        }
+    }
+
+    /*static IEnumerator LoadMutations() {
+        
+    }
+
+    static IEnumerator LoadTraits() {
+        
+    }*/
+
+    public static List<string[]> ParseTSV(string tsv) {
+        var tsvArray = tsv.Split('\n');
+        var tsvOut = new List<string[]>();
+        for (int i = 0; i < tsvArray.Length; i++) {
+            tsvOut.Add(tsvArray[i].TrimEnd('\t').Split('\t'));
+        }
+
+        return tsvOut;
     }
 }
 

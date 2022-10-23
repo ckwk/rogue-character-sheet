@@ -20,9 +20,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3762257f-2626-4ee4-ae2e-3f4871c89576" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/API/Spells/Bolt.tsv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.rogue-character-sheet/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.rogue-character-sheet/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/API/Core.ini" beforeDir="false" afterPath="$PROJECT_DIR$/API/Core.ini" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/API/Directory.ini" beforeDir="false" afterPath="$PROJECT_DIR$/API/Directory.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/Spells/Bolt.csv" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -119,6 +120,7 @@
       <workItem from="1666474015866" duration="1686000" />
       <workItem from="1666478276515" duration="1279000" />
       <workItem from="1666479598044" duration="2978000" />
+      <workItem from="1666482636862" duration="5530000" />
     </task>
     <servers />
   </component>
