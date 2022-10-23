@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour {
     public static int currentScreen;
     private float count;
     private int frameCount;
+    public static List<TSV> spellObjects = new List<TSV>(), mutationsObjects = new List<TSV>(), traitObjects = new List<TSV>();
     private GameObject diceMenu, diceSwipeBar, swipeToRoll, diceButton, saveBanner, statsPage, characterPage, equipmentPage, magicPage;
     private AudioSource mainAudio;
     public List<GameObject> pages;
@@ -485,7 +486,7 @@ public static class SaveSystem {
                 var directoryArray = directory.Split('\n');
                 _modules.Add(directoryArray[0], new List<string>());
                 for (var i = 1; i < directoryArray.Length; i++) {
-                    if (directoryArray[i].StartsWith("[") || directoryArray[i] == "\n") continue; //TODO: expand for more module types
+                    if (directoryArray[i].StartsWith("[") || directoryArray[i] == "") continue; //TODO: expand for more module types
                     _modules[directoryArray[0]].Add(directoryArray[i]);
                 }
                 
@@ -498,9 +499,9 @@ public static class SaveSystem {
                 }
                 
                 // load the components from the downloaded modules
-                yield return LoadSpells();
-                /*yield return LoadMutations();
-                yield return LoadTraits();*/
+                yield return LoadComponents(_spells, "/Spells/", GameManager.spellObjects);
+                yield return LoadComponents(_mutations, "/Mutations/", GameManager.mutationsObjects);
+                yield return LoadComponents(_traits, "/Traits/", GameManager.traitObjects);
             }
         }
     }
@@ -508,27 +509,18 @@ public static class SaveSystem {
     static IEnumerator FetchModule(string module) {
         using (UnityWebRequest moduleRequest = UnityWebRequest.Get(GameManager.repoURL + module)) {
             yield return moduleRequest.SendWebRequest();
-            if (moduleRequest.result != UnityWebRequest.Result.Success) {
-                Debug.Log(moduleRequest.error);
-            } else {
+            if (moduleRequest.result != UnityWebRequest.Result.Success) Debug.Log(moduleRequest.error);
+            else {
                 var m = moduleRequest.downloadHandler.text.Replace("\r\n", "\n");
                 
                 // compose our dictionary of spells, mutations, and traits
                 var moduleArray = m.Split('\n');
                 bool mutations = false, traits = false;
-                int mutationsIndex = 0, traitsIndex = 0;
-
                 for (var i = 1; i < moduleArray.Length; i++) {
                     switch (moduleArray[i].Trim()) {
                         case "": continue;
-                        case "[Traits]":
-                            traits = true;
-                            traitsIndex = i;
-                            continue;
-                        case "[Mutations]":
-                            mutations = true;
-                            mutationsIndex = i;
-                            continue;
+                        case "[Traits]": traits = true; continue;
+                        case "[Mutations]": mutations = true; continue;
                     }
 
                     if (traits) _traits.Add(moduleArray[i]);
@@ -540,34 +532,41 @@ public static class SaveSystem {
         }
     }
 
-    static IEnumerator LoadSpells() {
-        foreach (var spell in _spells) {
-            using (UnityWebRequest spellRequest = UnityWebRequest.Get(GameManager.repoURL + "/Spells/" + spell)) {
-                yield return spellRequest.SendWebRequest();
-                if (spellRequest.result != UnityWebRequest.Result.Success) {
-                    Debug.Log(spellRequest.error);
-                }
-                else {
-                    var s = ParseTSV(spellRequest.downloadHandler.text.Replace("\r\n", "\n"));
-
-                }
-            }
+    static IEnumerator LoadComponents(List<string> type, string folder, List<TSV> target) {
+        foreach (var item in type) {
+            using var request = UnityWebRequest.Get(GameManager.repoURL + folder + item);
+            yield return request.SendWebRequest();
+            if (request.result != UnityWebRequest.Result.Success) Debug.Log(request.error);
+            else target.Add(TSV.ParseTSV(request.downloadHandler.text.Replace("\r\n", "\n")));
         }
     }
+}
 
-    /*static IEnumerator LoadMutations() {
-        
+public class TSV {
+    private string name;
+    private List<string[]> properties;
+
+    public TSV(string name) {
+        this.name = name;
+        properties = new List<string[]>();
     }
 
-    static IEnumerator LoadTraits() {
-        
-    }*/
+    public string GetName() {
+        return name;
+    }
 
-    public static List<string[]> ParseTSV(string tsv) {
+    public List<string[]> GetProperties() {
+        return properties;
+    }
+
+    public void AddToProperties(string[] property) {
+        properties.Add(property);
+    }
+    public static TSV ParseTSV(string tsv) {
         var tsvArray = tsv.Split('\n');
-        var tsvOut = new List<string[]>();
-        for (int i = 0; i < tsvArray.Length; i++) {
-            tsvOut.Add(tsvArray[i].TrimEnd('\t').Split('\t'));
+        TSV tsvOut = new TSV(tsvArray[0].TrimEnd('\t'));
+        for (int i = 1; i < tsvArray.Length; i++) {
+            tsvOut.AddToProperties(tsvArray[i].TrimEnd('\t').Split('\t'));
         }
 
         return tsvOut;
