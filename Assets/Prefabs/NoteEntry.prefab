@@ -151,7 +151,7 @@ MonoBehaviour:
     m_BestFit: 1
     m_MinSize: 10
     m_MaxSize: 40
-    m_Alignment: 3
+    m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -363,7 +363,7 @@ MonoBehaviour:
   m_InputType: 0
   m_AsteriskChar: 42
   m_KeyboardType: 0
-  m_LineType: 0
+  m_LineType: 1
   m_HideMobileInput: 0
   m_CharacterValidation: 0
   m_CharacterLimit: 0
@@ -447,10 +447,10 @@ RectTransform:
   m_Father: {fileID: 1662090177362029307}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.88600004, y: 0}
+  m_AnchorMin: {x: 0.88600004, y: 0.5}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.48999023, y: 0.00021362305}
-  m_SizeDelta: {x: 0.22000122, y: 0.5699997}
+  m_AnchoredPosition: {x: -0.48999023, y: 1.1108093}
+  m_SizeDelta: {x: 0.21999931, y: -1.651001}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1662090177136815316
 CanvasRenderer:
@@ -601,8 +601,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0.88600004, y: 1}
-  m_AnchoredPosition: {x: -0.5669861, y: 0.3973999}
-  m_SizeDelta: {x: -1.5800018, y: 1.1996}
+  m_AnchoredPosition: {x: -0.5669861, y: 0.4985962}
+  m_SizeDelta: {x: -1.58, y: 0.99719}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1662090178077601766
 CanvasRenderer:
@@ -714,10 +714,10 @@ MonoBehaviour:
     m_BestFit: 1
     m_MinSize: 10
     m_MaxSize: 40
-    m_Alignment: 3
+    m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 0
-    m_HorizontalOverflow: 1
+    m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 
@@ -753,8 +753,8 @@ RectTransform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.03968207, y: 0.70000005}
+  m_AnchorMin: {x: 0.040000003, y: 0.652}
   m_AnchorMax: {x: 0.952, y: 0.74283725}
-  m_AnchoredPosition: {x: -0.96591187, y: 2.5}
-  m_SizeDelta: {x: -1.9636841, y: 2.0312195}
+  m_AnchoredPosition: {x: -0.96591187, y: 1.8894043}
+  m_SizeDelta: {x: -1.9637003, y: 3.2524033}
   m_Pivot: {x: 0.5, y: 0.5}

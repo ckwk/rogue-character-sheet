@@ -7,18 +7,21 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class LoadButton : MonoBehaviour {
+public class LoadButton : MonoBehaviour
+{
     private GameManager _gm;
     private Text _name;
     private LoadFade _loadFade;
 
-    private void Start() {
+    private void Start()
+    {
         _gm = GameObject.Find("GameManager").GetComponent<GameManager>();
         _name = transform.GetChild(0).GetComponent<Text>();
         _loadFade = transform.parent.parent.parent.parent.GetChild(0).GetComponent<LoadFade>();
     }
 
-    public void LoadSelectedCharacter() {
+    public void LoadSelectedCharacter()
+    {
         var path = Application.persistentDataPath + "/" + _name.text;
         var directory = new DirectoryInfo(path);
         path += "/" + directory.GetFiles().OrderByDescending(f => f.LastWriteTime).First().Name;
@@ -27,7 +30,8 @@ public class LoadButton : MonoBehaviour {
         _loadFade.Disappear();
     }
 
-    public void DeleteSelectedCharacter() {
+    public void DeleteSelectedCharacter()
+    {
         var path = Application.persistentDataPath + "/" + _name.text;
         Directory.Delete(path, true);
         _name.text = "Deleted!";

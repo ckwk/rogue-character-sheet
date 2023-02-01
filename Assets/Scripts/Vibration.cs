@@ -3,7 +3,6 @@ using System.Collections;
 
 public static class Vibration
 {
-
 #if UNITY_ANDROID && !UNITY_EDITOR
     public static AndroidJavaClass unityPlayer = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
     public static AndroidJavaObject currentActivity = unityPlayer.GetStatic<AndroidJavaObject>("currentActivity");
@@ -21,7 +20,6 @@ public static class Vibration
         else
             Handheld.Vibrate();
     }
-
 
     public static void Vibrate(long milliseconds)
     {
