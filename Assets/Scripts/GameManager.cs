@@ -358,6 +358,7 @@ public class GameManager : MonoBehaviour
     public void SetUIBioAndNotes()
     {
         notes.serializedEntries = currentCharacter.notes;
+        notes.serializedEntries.RemoveAll(item => item == "||||");
         notes.LoadEntries();
     }
 

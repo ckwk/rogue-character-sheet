@@ -57122,7 +57122,7 @@ MonoBehaviour:
   _entries: []
   entry: {fileID: 1662090178190616842, guid: d17ca58b0363e5e4d9f43216412294ce, type: 3}
   fieldsBelow: []
-  handler: {fileID: 1429686716}
+  handler: {fileID: 0}
   scroller: {fileID: 733659703}
 --- !u!114 &1429686717
 MonoBehaviour:
@@ -84195,6 +84195,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1948461289}
     m_Modifications:
+    - target: {fileID: 1256388918823050720, guid: 5e75ef102dcf8a042875a2ccf68f5bdb, type: 3}
+      propertyPath: handler
+      value: 
+      objectReference: {fileID: 1473352583}
+    - target: {fileID: 1256388918823050720, guid: 5e75ef102dcf8a042875a2ccf68f5bdb, type: 3}
+      propertyPath: scroller
+      value: 
+      objectReference: {fileID: 1023410065}
     - target: {fileID: 1256388919469617990, guid: 5e75ef102dcf8a042875a2ccf68f5bdb, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

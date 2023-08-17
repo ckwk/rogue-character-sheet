@@ -20,6 +20,7 @@ public class HandleEntries : MonoBehaviour
     private void Awake()
     {
         serializedEntries = new List<string> { defaultEntry };
+        serializedEntries.Add("||||");
         _numEntries = 1;
         _gm = GameObject.Find("GameManager").GetComponent<GameManager>();
 
@@ -34,7 +35,7 @@ public class HandleEntries : MonoBehaviour
     public void Start()
     {
         //serializedEntries = new List<string> {"|||"};
-        if (!handler)
+        if (!handler) // if this instance has no handler, exit
             return;
         handler._entries.Add(gameObject.GetComponent<RectTransform>());
         if (handler.fieldsBelow.Count < 1)
@@ -46,6 +47,7 @@ public class HandleEntries : MonoBehaviour
     {
         var newEntry = Instantiate(entry, transform.parent, false);
         var entryScript = newEntry.transform.GetChild(1).GetComponent<HandleEntries>();
+        var isFirstEntry = serializedEntries.Count == 0 ? 1 : 0;
         entryScript.handler = this;
         entryScript.scroller = scroller;
         entryScript.index = _numEntries;
@@ -55,7 +57,7 @@ public class HandleEntries : MonoBehaviour
         var anchoredPos = rTrans.anchoredPosition;
         anchoredPos = new Vector2(
             anchoredPos.x,
-            anchoredPos.y - (_numEntries * offset + noteOffset)
+            anchoredPos.y - ((_numEntries * offset) + noteOffset)
         );
         rTrans.anchoredPosition = anchoredPos;
 
@@ -90,7 +92,10 @@ public class HandleEntries : MonoBehaviour
 
         var rTrans = newEntry.GetComponent<RectTransform>();
         var anchoredPos = rTrans.anchoredPosition;
-        anchoredPos = new Vector2(anchoredPos.x, anchoredPos.y - _numEntries * offset);
+        anchoredPos = new Vector2(
+            anchoredPos.x,
+            anchoredPos.y - ((_numEntries * offset) + noteOffset)
+        );
         rTrans.anchoredPosition = anchoredPos;
 
         foreach (var field in fieldsBelow)
@@ -168,19 +173,21 @@ public class HandleEntries : MonoBehaviour
     // Used by top level button to load entrys
     public void LoadEntries()
     {
-        transform.parent
-            .GetChild(2)
-            .GetChild(1)
-            .GetComponent<HandleEntries>()
-            .RemoveEntryForLoadAndOtherThings();
+        while (_entries.Count > 0)
+        {
+            _entries[0].gameObject.GetComponent<HandleEntries>().RemoveEntryForLoadAndOtherThings();
+        }
         if (serializedEntries == null)
             serializedEntries = new List<string> { defaultEntry };
         foreach (var e in serializedEntries)
         {
+            if (e == defaultEntry)
+                continue;
+
             var mutableEntry = e;
             for (var i = 1; i < 4; i++)
             {
-                if (e.Substring(e.Length - i)[0] != '|')
+                if (e.Substring(e.Length - i).Trim('\u200B')[0] != '|')
                 {
                     if (i == 1)
                         break;
