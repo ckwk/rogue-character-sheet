@@ -4,6 +4,7 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -35,6 +36,7 @@ public class GameManager : MonoBehaviour
         characterPage,
         equipmentPage,
         magicPage;
+    public GameObject powerScreen;
     private AudioSource mainAudio;
     public List<GameObject> pages;
     public List<Text> navText;
@@ -44,7 +46,8 @@ public class GameManager : MonoBehaviour
     public Character currentCharacter;
     public TMP_Text txtName;
     public InputField inField,
-        numDice;
+        numDice,
+        powerScreenResultNum;
     public TextBox activeTextBox;
     private Text diceType;
     public Text level,
@@ -59,6 +62,11 @@ public class GameManager : MonoBehaviour
         intuition,
         luck,
         strokesOfLuck;
+    public TMP_Text powerScreenName,
+        powerScreenCost,
+        powerScreenDuration,
+        powerScreenCastingTime,
+        powerScreenResult;
 
     public HandleEntries equipment,
         weapons,
@@ -103,6 +111,7 @@ public class GameManager : MonoBehaviour
         characterPage = GameObject.Find("Character");
         equipmentPage = GameObject.Find("Equipment");
         magicPage = GameObject.Find("Magic");
+        powerScreen = GameObject.Find("PowerScreen");
         saveBanner = GameObject.Find("SaveBanner");
         diceMenu.SetActive(false);
         diceSwipeBar.SetActive(false);
@@ -110,6 +119,7 @@ public class GameManager : MonoBehaviour
         characterPage.SetActive(false);
         equipmentPage.SetActive(false);
         magicPage.SetActive(false);
+        powerScreen.SetActive(false);
         StartCoroutine(SaveSystem.ImportModules());
         if (PlayerPrefs.HasKey("lastFile"))
         {
@@ -588,6 +598,22 @@ public class GameManager : MonoBehaviour
         diceType.text = newType;
     }
 
+    public string GetPowerResultText(TSV power, int roll)
+    {
+        var previousBoundary = 1;
+        var currentBoundary = 1;
+        foreach (var row in power.GetProperties().Skip(2))
+        {
+            currentBoundary = int.Parse(row[0]);
+            if (roll < currentBoundary)
+            {
+                return string.Format("({0}-{1})\t{2}", previousBoundary, currentBoundary, row[1]);
+            }
+            previousBoundary = currentBoundary;
+        }
+        return "";
+    }
+
     public void PlayButtonSound()
     {
         mainAudio.clip = buttonPress;
@@ -727,6 +753,8 @@ public static class SaveSystem
                     GameManager.mutationsObjects
                 );
                 yield return LoadComponents(_traits, "/Traits/", GameManager.traitObjects);
+
+                Debug.Log(GameManager.spellObjects[0].GetProperties()[2][0]);
             }
         }
     }

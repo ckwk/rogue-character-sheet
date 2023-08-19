@@ -38,8 +38,6 @@ public class HandleEntries : MonoBehaviour
         if (!handler) // if this instance has no handler, exit
             return;
         handler._entries.Add(gameObject.GetComponent<RectTransform>());
-        if (handler.gameObject.transform.parent.name.Contains("EquipmentCon"))
-            print(handler._entries.Count);
         if (handler.fieldsBelow.Count < 1)
             scroller.lowestEntry = gameObject.GetComponent<RectTransform>();
     }
