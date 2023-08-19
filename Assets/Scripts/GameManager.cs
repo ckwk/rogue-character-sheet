@@ -605,15 +605,13 @@ public class GameManager : MonoBehaviour
         foreach (var row in power.GetProperties().Skip(2))
         {
             if (row == power.GetProperties().Last())
-            {
                 return string.Format("({0})\t{1}", row[0], row[1]);
-            }
 
-            currentBoundary = int.Parse(row[0]);
+            currentBoundary = int.Parse(row[0].Split('-').Last());
             if (roll <= currentBoundary)
             {
                 var effect = previousBoundary == 1 ? GetEffectWithCorruption(power) : row[1];
-                return string.Format("({0}-{1})\t{2}", previousBoundary, currentBoundary, effect);
+                return string.Format("({0})\t{1}", row[0], effect);
             }
             previousBoundary = currentBoundary + 1;
         }
