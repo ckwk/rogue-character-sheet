@@ -52,12 +52,14 @@ public class RollPowerButton : MonoBehaviour
                 break;
         }
 
+        uiResultNum.gameObject.GetComponent<PowerResultNumber>().currentPower = power;
+
         powerScreen.SetActive(true);
         uiName.text = power.GetName();
-        uiCost.text = power.GetProperties()[0][0];
+        uiCost.text = power.GetProperties()[0][0].Replace(": ", ":\n");
         // [0][1] contains range which is skipped over
-        uiDuration.text = power.GetProperties()[0][2];
-        uiCastingTime.text = power.GetProperties()[0][3];
+        uiDuration.text = power.GetProperties()[0][2].Replace(": ", ":\n");
+        uiCastingTime.text = power.GetProperties()[0][3].Replace(": ", ":\n");
         uiResultNum.text = roll.ToString();
         uiResult.text = gm.GetPowerResultText(power, roll);
     }

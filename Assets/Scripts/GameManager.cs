@@ -604,14 +604,28 @@ public class GameManager : MonoBehaviour
         var currentBoundary = 1;
         foreach (var row in power.GetProperties().Skip(2))
         {
-            currentBoundary = int.Parse(row[0]);
-            if (roll < currentBoundary)
+            if (row == power.GetProperties().Last())
             {
-                return string.Format("({0}-{1})\t{2}", previousBoundary, currentBoundary, row[1]);
+                return string.Format("({0})\t{1}", row[0], row[1]);
             }
-            previousBoundary = currentBoundary;
+
+            currentBoundary = int.Parse(row[0]);
+            if (roll <= currentBoundary)
+            {
+                var effect = previousBoundary == 1 ? GetEffectWithCorruption(power) : row[1];
+                return string.Format("({0}-{1})\t{2}", previousBoundary, currentBoundary, effect);
+            }
+            previousBoundary = currentBoundary + 1;
         }
         return "";
+    }
+
+    private string GetEffectWithCorruption(TSV power)
+    {
+        var formattedCorruption = power.GetProperties()[1][1]
+            .Replace(": ", ":\n\n")
+            .Replace("; ", ";\n\n");
+        return string.Format("{0}\n\n{1}", power.GetProperties()[2][1], formattedCorruption);
     }
 
     public void PlayButtonSound()
