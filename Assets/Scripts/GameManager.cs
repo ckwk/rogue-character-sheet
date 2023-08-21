@@ -61,7 +61,9 @@ public class GameManager : MonoBehaviour
         charisma,
         intuition,
         luck,
-        strokesOfLuck;
+        strokesOfLuck,
+        spellStat,
+        mutationStat;
     public TMP_Text powerScreenName,
         powerScreenCost,
         powerScreenDuration,
@@ -148,6 +150,8 @@ public class GameManager : MonoBehaviour
         SetCharacterWeapons();
         SetCharacterArmour();
         SetCharacterSpells();
+        SetCharacterSpellStat();
+        SetCharacterMutationStat();
         SaveCharacter();
     }
 
@@ -332,6 +336,18 @@ public class GameManager : MonoBehaviour
         SetUnsavedChanges(true);
     }
 
+    public void SetCharacterSpellStat()
+    {
+        currentCharacter.spellStat = spellStat.text;
+        SetUnsavedChanges(true);
+    }
+
+    public void SetCharacterMutationStat()
+    {
+        currentCharacter.mutationStat = mutationStat.text;
+        SetUnsavedChanges(true);
+    }
+
     public void SetUIName()
     {
         nameF.text = currentCharacter.name;
@@ -464,6 +480,16 @@ public class GameManager : MonoBehaviour
         mutations.LoadEntries();
     }
 
+    public void SetUISpellStat()
+    {
+        spellStat.text = currentCharacter.spellStat;
+    }
+
+    public void SetUIMutationStat()
+    {
+        mutationStat.text = currentCharacter.mutationStat;
+    }
+
     public void SaveCharacter()
     {
         SaveSystem.Save(currentCharacter);
@@ -494,6 +520,8 @@ public class GameManager : MonoBehaviour
         SetUIArmour();
         SetUISpells();
         SetUICorruptionsMutations();
+        SetUISpellStat();
+        SetUIMutationStat();
         SetUnsavedChanges(false);
         saveBanner.GetComponent<SaveBanner>().Disappear();
     }
@@ -650,7 +678,9 @@ public class Character
 {
     public string name,
         luckyRoll,
-        portraitPath;
+        portraitPath,
+        spellStat,
+        mutationStat;
     public int lvl,
         hp,
         maxHp,
@@ -670,7 +700,8 @@ public class Character
         mutations,
         corruptions,
         traits,
-        notes;
+        notes,
+        modules;
 }
 
 public static class SaveSystem
