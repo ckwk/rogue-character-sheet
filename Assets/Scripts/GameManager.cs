@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
     public static List<TSV> spellObjects = new List<TSV>(),
         mutationsObjects = new List<TSV>(),
         traitObjects = new List<TSV>();
+    public static LoadedModules loadedModules = new LoadedModules();
     private GameObject diceMenu,
         diceSwipeBar,
         swipeToRoll,
@@ -44,6 +45,7 @@ public class GameManager : MonoBehaviour
     public AudioClip buttonPress,
         diceRoll;
     public Character currentCharacter;
+    public static List<string> activeModules = new List<string>();
     public TMP_Text txtName;
     public InputField inField,
         numDice,
@@ -122,9 +124,10 @@ public class GameManager : MonoBehaviour
         equipmentPage.SetActive(false);
         magicPage.SetActive(false);
         powerScreen.SetActive(false);
-        StartCoroutine(SaveSystem.ImportModules());
+        SaveSystem.ImportDownloadedModules();
         if (PlayerPrefs.HasKey("lastFile"))
         {
+            StartCoroutine(SaveSystem.ImportModules(PlayerPrefs.GetString("lastFile"), false));
             LoadCharacter(PlayerPrefs.GetString("lastFile"));
             saveBanner.GetComponent<SaveBanner>().Disappear();
             return;
@@ -729,9 +732,9 @@ public static class SaveSystem
         file.Close();
 
         //Delete up to max files
-        var maxFiles = 20;
+        var maxFiles = 21;
         var filesInDir = Directory.GetFiles(directory);
-        if (filesInDir.Length < maxFiles)
+        if (filesInDir.Length <= maxFiles)
             return;
         File.Delete(filesInDir[0]);
     }
@@ -744,15 +747,81 @@ public static class SaveSystem
             var file = new FileStream(path, FileMode.Open);
             var c = (Character)bf.Deserialize(file);
             file.Close();
+
             return c;
         }
         Debug.LogError("Save file not found in " + path);
         return null;
     }
 
-    public static IEnumerator ImportModules()
+    public static void SaveActiveModules(string path)
+    {
+        var bf = new BinaryFormatter();
+        var modulesPath = Path.GetDirectoryName(path).Replace("\\", "/") + "/modules.rog";
+        var modulesFile = new FileStream(modulesPath, FileMode.OpenOrCreate);
+        bf.Serialize(modulesFile, GameManager.activeModules);
+        modulesFile.Close();
+    }
+
+    public static void LoadActiveModules(string path)
+    {
+        var modulesPath = Path.GetDirectoryName(path).Replace("\\", "/") + "/modules.rog";
+        if (File.Exists(modulesPath))
+        {
+            var bf = new BinaryFormatter();
+            var modulesFile = new FileStream(modulesPath, FileMode.Open);
+            GameManager.activeModules = (List<string>)bf.Deserialize(modulesFile);
+            modulesFile.Close();
+        }
+    }
+
+    public static void SerializeDownloadedModules(LoadedModules loadedModules)
+    {
+        var bf = new BinaryFormatter();
+        var file = new FileStream(
+            Application.persistentDataPath + "/downloadedModules.rog",
+            FileMode.OpenOrCreate
+        );
+        Debug.Log("Serializing downloaded modules...");
+        bf.Serialize(file, loadedModules);
+        file.Close();
+    }
+
+    public static void ImportDownloadedModules()
+    {
+        var path = Application.persistentDataPath + "/downloadedModules.rog";
+        if (File.Exists(path))
+        {
+            var bf = new BinaryFormatter();
+            var file = new FileStream(path, FileMode.Open);
+            GameManager.loadedModules = (LoadedModules)bf.Deserialize(file);
+            file.Close();
+            return;
+        }
+        Debug.LogError("No downloaded modules");
+    }
+
+    private static int GetIndexOfComponent(List<string> list, string component)
+    {
+        var index = 0;
+        foreach (var comp in list)
+        {
+            if (comp.Split('\n')[0].Trim() == component.Split('.')[0])
+                return index;
+            //Debug.Log(comp.Split('\n')[0].Trim() + " does not match " + component.Split('.')[0]);
+            index++;
+        }
+        return -1;
+    }
+
+    public static IEnumerator ImportModules(string path, bool forceDownload)
     {
         Debug.Log("fetching API");
+        var loadedModuleNames = new List<string>();
+        foreach (var m in GameManager.loadedModules.modules)
+        {
+            loadedModuleNames.Add(m.Split(',')[0]);
+        }
         using (
             UnityWebRequest directoryRequest = UnityWebRequest.Get(
                 GameManager.repoURL + GameManager.directoryFile
@@ -783,23 +852,62 @@ public static class SaveSystem
                 {
                     foreach (var module in section.Value)
                     {
+                        if (loadedModuleNames.Contains(module) && !forceDownload)
+                            continue;
                         Debug.Log("fetching " + module);
+                        loadedModuleNames.Add(module);
                         yield return FetchModule(module);
                     }
                 }
 
                 // load the components from the downloaded modules
-                yield return LoadComponents(_spells, "/Spells/", GameManager.spellObjects);
+                yield return LoadComponents(_spells, "/Spells/", GameManager.loadedModules.spells);
                 yield return LoadComponents(
                     _mutations,
                     "/Mutations/",
-                    GameManager.mutationsObjects
+                    GameManager.loadedModules.mutations
                 );
-                yield return LoadComponents(_traits, "/Traits/", GameManager.traitObjects);
-
-                Debug.Log(GameManager.spellObjects[0].GetProperties()[2][0]);
+                yield return LoadComponents(_traits, "/Traits/", GameManager.loadedModules.traits);
             }
         }
+
+        // load the character's modules.rog file if it exists
+        LoadActiveModules(path);
+
+        if (GameManager.activeModules.Count == 0)
+            GameManager.activeModules.Add(GameManager.loadedModules.modules[0]);
+        Debug.Log(GameManager.activeModules[0]);
+
+        // activate modules for this character
+        foreach (var module in GameManager.activeModules)
+        {
+            var componentList = GameManager.loadedModules.modules
+                .Find(s => s.Contains(module))
+                .Split(',');
+            var source = GameManager.loadedModules.spells;
+            var target = GameManager.spellObjects;
+            foreach (var component in componentList.Skip(1)) // skips over the module's name, i.e. Core.ini
+            {
+                var componentName = component.Split('.')[0];
+                switch (component)
+                {
+                    case "[Mutations]":
+                        source = GameManager.loadedModules.mutations;
+                        target = GameManager.mutationsObjects;
+                        break;
+                    case "[Traits]":
+                        source = GameManager.loadedModules.traits;
+                        target = GameManager.traitObjects;
+                        break;
+                    default:
+                        ActivateComponent(source[GetIndexOfComponent(source, component)], target);
+                        break;
+                }
+            }
+        }
+
+        SaveActiveModules(path);
+        SerializeDownloadedModules(GameManager.loadedModules);
     }
 
     static IEnumerator FetchModule(string module)
@@ -819,6 +927,7 @@ public static class SaveSystem
                     traits = false;
                 for (var i = 1; i < moduleArray.Length; i++)
                 {
+                    module = moduleArray[i] == "" ? module : module + "," + moduleArray[i];
                     switch (moduleArray[i].Trim())
                     {
                         case "":
@@ -839,11 +948,12 @@ public static class SaveSystem
                         _spells.Add(moduleArray[i]);
                     Debug.Log("entered " + moduleArray[i]);
                 }
+                GameManager.loadedModules.modules.Add(module);
             }
         }
     }
 
-    static IEnumerator LoadComponents(List<string> type, string folder, List<TSV> target)
+    static IEnumerator LoadComponents(List<string> type, string folder, List<string> target)
     {
         foreach (var item in type)
         {
@@ -852,8 +962,15 @@ public static class SaveSystem
             if (request.result != UnityWebRequest.Result.Success)
                 Debug.Log(request.error);
             else
-                target.Add(TSV.ParseTSV(request.downloadHandler.text.Replace("\r\n", "\n")));
+                target.Add(request.downloadHandler.text);
         }
+    }
+
+    static void ActivateComponent(string component, List<TSV> activatedList)
+    {
+        var componentToActivate = TSV.ParseTSV(component.Replace("\r\n", "\n"));
+        activatedList.Add(componentToActivate);
+        Debug.Log("Activated " + componentToActivate.GetName());
     }
 }
 
@@ -894,4 +1011,13 @@ public class TSV
 
         return tsvOut;
     }
+}
+
+[Serializable]
+public class LoadedModules
+{
+    public List<string> modules = new List<string>(),
+        spells = new List<string>(),
+        mutations = new List<string>(),
+        traits = new List<string>();
 }

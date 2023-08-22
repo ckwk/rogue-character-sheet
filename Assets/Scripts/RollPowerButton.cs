@@ -51,7 +51,7 @@ public class RollPowerButton : MonoBehaviour
                 RollStat(mutationStat.text);
                 break;
         }
-
+        print(power.GetName());
         uiResultNum.gameObject.GetComponent<PowerResultNumber>().currentPower = power;
 
         powerScreen.SetActive(true);
