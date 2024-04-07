@@ -173,10 +173,10 @@ public class HandleEntries : MonoBehaviour
     // Used by top level button to load entrys
     public void LoadEntries()
     {
-        if (_entries.Count == 0)
-            _entries.Add(
-                transform.parent.GetChild(2).GetChild(1).gameObject.GetComponent<RectTransform>()
-            );
+        var initialEntry = transform.parent.GetChild(2).GetChild(1).gameObject;
+
+        if (_entries.Count == 0 && initialEntry)
+            _entries.Add(initialEntry.GetComponent<RectTransform>());
         while (_entries.Count > 0)
         {
             _entries[0].gameObject.GetComponent<HandleEntries>().RemoveEntryForLoadAndOtherThings();

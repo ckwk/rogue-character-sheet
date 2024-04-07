@@ -44,8 +44,8 @@ public class HamburgerMenu : MonoBehaviour
 
     private void CreateNewCharacter()
     {
-        var directory = new DirectoryInfo(Application.persistentDataPath + "/New Character​");
-        var path = Application.persistentDataPath + "/New Character​";
+        var directory = new DirectoryInfo(Application.persistentDataPath + "/New Character");
+        var path = Application.persistentDataPath + "/New Character";
         path += "/" + directory.GetFiles().OrderBy(f => f.CreationTime).First().Name;
         _gm.LoadCharacter(path);
         PlayerPrefs.SetString("lastFile", path);

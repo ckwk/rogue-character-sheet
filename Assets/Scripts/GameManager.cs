@@ -105,7 +105,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         mainAudio = Camera.main.GetComponent<AudioSource>();
-        numDice = GameObject.Find("Number").GetComponent<InputField>();
+        numDice = GameObject.Find("NumDice").GetComponent<InputField>();
         diceType = GameObject.Find("TypeDice").transform.GetChild(0).GetComponent<Text>();
         diceMenu = GameObject.Find("DiceMenu");
         diceSwipeBar = GameObject.Find("DiceSwipeBar");
@@ -132,8 +132,6 @@ public class GameManager : MonoBehaviour
             saveBanner.GetComponent<SaveBanner>().Disappear();
             return;
         }
-        SetCharacterCandM();
-        SetCharacterMutations();
         SetCharacterName();
         SetCharacterLevel();
         SetCharacterStr();
@@ -153,9 +151,12 @@ public class GameManager : MonoBehaviour
         SetCharacterWeapons();
         SetCharacterArmour();
         SetCharacterSpells();
+        SetCharacterCandM();
+        SetCharacterMutations();
         SetCharacterSpellStat();
         SetCharacterMutationStat();
         SaveCharacter();
+        StartCoroutine(SaveSystem.ImportModules(PlayerPrefs.GetString("lastFile"), false));
     }
 
     private void Update()
@@ -380,14 +381,17 @@ public class GameManager : MonoBehaviour
 
     public void SetUITraits()
     {
-        traits.serializedEntries = currentCharacter.traits;
+        traits.serializedEntries = new List<string>(
+            currentCharacter.traits.Where(entry => entry != "||||")
+        );
         traits.LoadEntries();
     }
 
     public void SetUIBioAndNotes()
     {
-        notes.serializedEntries = currentCharacter.notes;
-        notes.serializedEntries.RemoveAll(item => item == "||||");
+        notes.serializedEntries = new List<string>(
+            currentCharacter.notes.Where(entry => entry != "||||")
+        );
         notes.LoadEntries();
     }
 
@@ -453,25 +457,33 @@ public class GameManager : MonoBehaviour
 
     public void SetUIEquipment()
     {
-        equipment.serializedEntries = currentCharacter.equipment;
+        equipment.serializedEntries = new List<string>(
+            currentCharacter.equipment.Where(entry => entry != "||||")
+        );
         equipment.LoadEntries();
     }
 
     public void SetUIWeapons()
     {
-        weapons.serializedEntries = currentCharacter.weapons;
+        weapons.serializedEntries = new List<string>(
+            currentCharacter.weapons.Where(entry => entry != "||||")
+        );
         weapons.LoadEntries();
     }
 
     public void SetUIArmour()
     {
-        armour.serializedEntries = currentCharacter.armour;
+        armour.serializedEntries = new List<string>(
+            currentCharacter.armour.Where(entry => entry != "||||")
+        );
         armour.LoadEntries();
     }
 
     public void SetUISpells()
     {
-        spells.serializedEntries = currentCharacter.spells;
+        spells.serializedEntries = new List<string>(
+            currentCharacter.spells.Where(entry => entry != "||||")
+        );
         spells.LoadEntries();
     }
 
@@ -502,6 +514,7 @@ public class GameManager : MonoBehaviour
     public void LoadCharacter(string path)
     {
         currentCharacter = SaveSystem.Load(path);
+
         SetUIName();
         SetUIPortrait();
         SetUITraits();
@@ -718,12 +731,14 @@ public static class SaveSystem
     public static void Save(Character c)
     {
         var bf = new BinaryFormatter();
-        var fName = DateTime.Now.ToString(new CultureInfo("en-GB"));
+        var fName = DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss");
         var directory = Application.persistentDataPath + "/" + c.name;
-        fName = fName.Replace('/', '-').Replace(' ', '-').Replace(':', '-');
-        if (!Directory.Exists(directory))
-            Directory.CreateDirectory(directory);
         var path = directory + "/" + fName + ".rog";
+        if (!Directory.Exists(directory))
+        {
+            Directory.CreateDirectory(directory);
+            SaveActiveModules(path);
+        }
         var file = new FileStream(path, FileMode.Create);
 
         Debug.Log("Saving " + c.name + " to " + path);
@@ -734,6 +749,11 @@ public static class SaveSystem
         //Delete up to max files
         var maxFiles = 21;
         var filesInDir = Directory.GetFiles(directory);
+        Array.Sort(filesInDir);
+        foreach (var f in filesInDir)
+        {
+            Debug.Log(f);
+        }
         if (filesInDir.Length <= maxFiles)
             return;
         File.Delete(filesInDir[0]);

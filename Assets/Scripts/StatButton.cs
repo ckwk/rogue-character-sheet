@@ -34,7 +34,7 @@ public class StatButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
     private void Awake()
     {
-        numDice = GameObject.Find("Number").GetComponent<InputField>();
+        numDice = GameObject.Find("NumDice").GetComponent<InputField>();
         typeDice = GameObject.Find("TypeDice").transform.GetComponent<Dropdown>();
         diceMenu = GameObject.Find("DiceMenu");
         diceSwipeBar = GameObject.Find("DiceSwipeBar");

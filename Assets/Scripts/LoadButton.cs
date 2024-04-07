@@ -24,7 +24,8 @@ public class LoadButton : MonoBehaviour
     {
         var path = Application.persistentDataPath + "/" + _name.text;
         var directory = new DirectoryInfo(path);
-        path += "/" + directory.GetFiles().OrderByDescending(f => f.LastWriteTime).First().Name;
+        path += "/" + directory.GetFiles().OrderByDescending(f => f.Name).ElementAt(1).Name;
+        print(path);
         _gm.LoadCharacter(path);
         PlayerPrefs.SetString("lastFile", path);
         _loadFade.Disappear();

@@ -36,7 +36,7 @@ public class DiceSwiper : MonoBehaviour, IDragHandler, IEndDragHandler
 
     public void Start()
     {
-        numDice = GameObject.Find("Number").transform.GetChild(0).GetComponent<Text>();
+        numDice = GameObject.Find("NumDice").transform.GetChild(0).GetComponent<Text>();
         typeDice = GameObject.Find("TypeDice").transform.GetChild(0).GetComponent<Text>();
         total = GameObject.Find("Total");
         total.SetActive(false);
