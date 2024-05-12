@@ -136,7 +136,7 @@ MonoBehaviour:
       - m_Target: {fileID: 177910688236171900}
         m_TargetAssemblyTypeName: EntryField, Assembly-CSharp
         m_MethodName: UpdateHandler
-        m_Mode: 1
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -534,7 +534,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1917988499282072366}
         m_TargetAssemblyTypeName: HandleEntries, Assembly-CSharp
-        m_MethodName: DeleteEntry
+        m_MethodName: InvokeDeleteScreen
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -557,6 +557,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   index: 0
+  entryHeight: 0.5
   serializedEntries: []
   _entries: []
   entry: {fileID: 0}
@@ -906,6 +907,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   powerNameField: {fileID: 1917988498125904737}
+  uiResultNum: {fileID: 0}
 --- !u!1 &8335766185825207241
 GameObject:
   m_ObjectHideFlags: 0

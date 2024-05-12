@@ -18,6 +18,11 @@ public class LoadFade : MonoBehaviour
         transform.parent.gameObject.SetActive(false);
     }
 
+    public void NormalDisappear()
+    {
+        transform.parent.gameObject.SetActive(false);
+    }
+
     public void DiceFadeDisappear()
     {
         transform.parent.gameObject.SetActive(false);

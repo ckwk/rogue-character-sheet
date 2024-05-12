@@ -9,7 +9,10 @@ public class HandleEntries : MonoBehaviour
         noteOffset = 0.03f * Screen.height;
     private GameManager _gm;
     private string defaultEntry = "||||";
+    private List<string> catsWithButtons = new List<string> { "Spells", "Mutations" };
+    private GameObject deleteScreen;
     public int index = -1;
+    public float entryHeight = 1;
     public List<string> serializedEntries;
     public List<RectTransform> _entries;
     public GameObject entry;
@@ -23,6 +26,7 @@ public class HandleEntries : MonoBehaviour
         serializedEntries.Add("||||");
         _numEntries = 1;
         _gm = GameObject.Find("GameManager").GetComponent<GameManager>();
+        deleteScreen = _gm.deleteScreen;
 
         var parentName = transform.parent.name;
         noteOffset = parentName == "Notes" ? noteOffset : 0;
@@ -68,7 +72,7 @@ public class HandleEntries : MonoBehaviour
             field.anchoredPosition = anchoredPos;
         }
 
-        scroller.numEntries++;
+        scroller.numEntries += entryHeight;
         _numEntries++;
     }
 
@@ -105,11 +109,17 @@ public class HandleEntries : MonoBehaviour
             field.anchoredPosition = anchoredPos;
         }
 
-        scroller.numEntries++;
+        scroller.numEntries += entryHeight;
         _numEntries++;
     }
 
     // used by the entries themselves (in the delete button)
+    public void InvokeDeleteScreen()
+    {
+        _gm.deleteScreenActivator = gameObject;
+        deleteScreen.SetActive(true);
+    }
+
     public void DeleteEntry()
     {
         print(transform.parent.parent.position);
@@ -129,7 +139,7 @@ public class HandleEntries : MonoBehaviour
         var myTrans = gameObject.GetComponent<RectTransform>();
         var below = false;
         handler._numEntries--;
-        scroller.numEntries--;
+        scroller.numEntries -= entryHeight;
         foreach (var e in handler._entries)
         {
             if (e == myTrans)
@@ -173,20 +183,25 @@ public class HandleEntries : MonoBehaviour
     // Used by top level button to load entrys
     public void LoadEntries()
     {
-        var initialEntry = transform.parent.GetChild(2).GetChild(1).gameObject;
-
+        var parentName = transform.parent.name;
+        var initialEntry = transform.parent
+            .GetChild(catsWithButtons.Contains(parentName) ? 3 : 2)
+            ?.GetChild(1)
+            .gameObject;
         if (_entries.Count == 0 && initialEntry)
             _entries.Add(initialEntry.GetComponent<RectTransform>());
         while (_entries.Count > 0)
         {
-            _entries[0].gameObject.GetComponent<HandleEntries>().RemoveEntryForLoadAndOtherThings();
+            _entries[0]?.gameObject
+                .GetComponent<HandleEntries>()
+                .RemoveEntryForLoadAndOtherThings();
         }
-        if (serializedEntries == null)
+        if (serializedEntries.Count == 0)
             serializedEntries = new List<string> { defaultEntry };
         foreach (var e in serializedEntries)
         {
-            if (e == defaultEntry)
-                continue;
+            // if (e == defaultEntry)
+            //     continue;
 
             var mutableEntry = e;
             for (var i = 1; i < 4; i++)
@@ -203,5 +218,10 @@ public class HandleEntries : MonoBehaviour
             }
             LoadEntry(mutableEntry.Split('|'));
         }
+        // if (
+        //     _entries[0].transform.parent.GetChild(0).GetChild(0).GetComponent<InputField>().text
+        //     == ""
+        // )
+        //     _entries[0].gameObject.GetComponent<HandleEntries>().RemoveEntryForLoadAndOtherThings();
     }
 }

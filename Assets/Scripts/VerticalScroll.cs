@@ -1,6 +1,4 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using static GameManager;
@@ -9,12 +7,11 @@ public class VerticalScroll : MonoBehaviour, IDragHandler, IEndDragHandler
 {
     private Vector3 panelLocation,
         startLocation;
-    private int startingNumEntries;
-    public int numEntries = 2,
+    public float numEntries = 2,
         entriesUntilScroll = 14;
     private float distance = Screen.height,
         baseOffset = Screen.height * 0.1f,
-        entryOffset = Screen.height * 0.05f;
+        entryOffset = Screen.height * 0.1f;
     public float easing = 0.5f;
     public RectTransform lowestEntry;
     public Transform view;
@@ -23,7 +20,6 @@ public class VerticalScroll : MonoBehaviour, IDragHandler, IEndDragHandler
     {
         panelLocation = view.position;
         startLocation = panelLocation;
-        startingNumEntries = numEntries;
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -41,11 +37,11 @@ public class VerticalScroll : MonoBehaviour, IDragHandler, IEndDragHandler
             return;
         if (view.position.y < startLocation.y)
             StartCoroutine(SmoothMove(view.position, startLocation, easing));
-        if (view.position.y > startLocation.y + entryOffset * (numEntries - 6))
+        if (view.position.y > startLocation.y + entryOffset * (numEntries - 7))
         {
             var newLocation = new Vector3(
                 view.position.x,
-                startLocation.y + entryOffset * (numEntries - 6)
+                startLocation.y + entryOffset * (numEntries - 7)
             );
             StartCoroutine(SmoothMove(view.position, newLocation, easing));
         }

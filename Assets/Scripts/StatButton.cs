@@ -69,7 +69,11 @@ public class StatButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         foreach (var option in typeDice.options)
         {
             if (option.text == die.Substring(2))
+            {
                 typeDice.value = index;
+                break;
+            }
+
             index++;
         }
     }

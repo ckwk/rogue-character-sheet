@@ -46,7 +46,8 @@ public class HamburgerMenu : MonoBehaviour
     {
         var directory = new DirectoryInfo(Application.persistentDataPath + "/New Character");
         var path = Application.persistentDataPath + "/New Character";
-        path += "/" + directory.GetFiles().OrderBy(f => f.CreationTime).First().Name;
+        path += "/" + directory.GetFiles().OrderByDescending(f => f.Name).ToList()[1].Name;
+        Debug.Log(path);
         _gm.LoadCharacter(path);
         PlayerPrefs.SetString("lastFile", path);
     }
@@ -70,7 +71,7 @@ public class HamburgerMenu : MonoBehaviour
                 .Select(charName => charName.Substring(charName.LastIndexOf('/') + 1))
         )
         {
-            if (charName == "New Character​" || charName == "il2cpp")
+            if (charName == "New Character" || charName == "il2cpp")
                 continue;
             var button = Instantiate(loadButton, LoadDropdownContent);
             button.GetComponent<RectTransform>().anchoredPosition +=

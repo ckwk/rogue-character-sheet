@@ -37,7 +37,11 @@ public class GameManager : MonoBehaviour
         characterPage,
         equipmentPage,
         magicPage;
-    public GameObject powerScreen;
+    public GameObject powerScreen,
+        textBox,
+        textBoxActivator,
+        deleteScreen,
+        deleteScreenActivator;
     private AudioSource mainAudio;
     public List<GameObject> pages;
     public List<Text> navText;
@@ -51,7 +55,7 @@ public class GameManager : MonoBehaviour
         numDice,
         powerScreenResultNum;
     public TextBox activeTextBox;
-    private Text diceType;
+    private Dropdown diceType;
     public Text level,
         hitpoints,
         maxHitpoints,
@@ -98,6 +102,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+        Application.targetFrameRate = 90;
         currentCharacter = new Character();
         UnsavedChanges = false;
     }
@@ -106,7 +111,7 @@ public class GameManager : MonoBehaviour
     {
         mainAudio = Camera.main.GetComponent<AudioSource>();
         numDice = GameObject.Find("NumDice").GetComponent<InputField>();
-        diceType = GameObject.Find("TypeDice").transform.GetChild(0).GetComponent<Text>();
+        diceType = GameObject.Find("TypeDice").GetComponent<Dropdown>();
         diceMenu = GameObject.Find("DiceMenu");
         diceSwipeBar = GameObject.Find("DiceSwipeBar");
         swipeToRoll = GameObject.Find("Swipe");
@@ -547,33 +552,20 @@ public class GameManager : MonoBehaviour
         hamburger.value = 0;
     }
 
-    public void ResetTextBox()
+    public void UpdateEntryFromTextBox()
     {
-        activeTextBox.enabled = false;
-        switch (activeTextBox.gameObject.name)
-        {
-            case "TraitsText":
-                SetCharacterTraits();
-                break;
-            case "BioNotesText":
-                SetCharacterBioAndNotes();
-                break;
-            case "EquipmentText":
-                SetCharacterEquipment();
-                break;
-            case "WeaponText":
-                SetCharacterWeapons();
-                break;
-            case "ArmourText":
-                SetCharacterArmour();
-                break;
-            case "SpellsText":
-                SetCharacterSpells();
-                break;
-            case "CandMText":
-                SetCharacterCandM();
-                break;
-        }
+        var currentEntryField = textBoxActivator.GetComponent<EntryField>();
+        currentEntryField.gameObject.GetComponent<InputField>().text = textBox.transform
+            .GetChild(1)
+            .GetComponent<InputField>()
+            .text;
+        currentEntryField.UpdateHandler(true);
+    }
+
+    public void DeleteButton()
+    {
+        deleteScreenActivator.GetComponent<HandleEntries>().DeleteEntry();
+        deleteScreen.SetActive(false);
     }
 
     public void OpenDiceRoller()
@@ -586,60 +578,58 @@ public class GameManager : MonoBehaviour
 
     public void GoUpDiceChain()
     {
-        string newNum = numDice.text,
-            newType = diceType.text;
-        switch (diceType.text)
+        var newNum = numDice.text;
+        var newType = diceType.value;
+        switch (diceType.value)
         {
-            case "4":
-                newType = "6";
+            case 0:
+                newType = 1;
                 break;
-            case "6":
-                newType = "7";
+            case 1:
+                newType = 2;
                 break;
-            case "7":
-                newType = "8";
+            case 2:
+                newType = 3;
                 break;
-            case "8":
-                newType = "10";
+            case 3:
+                newType = 4;
                 break;
-            case "10":
+            case 4:
                 newNum = (int.Parse(newNum) + 1).ToString();
                 if (int.Parse(numDice.text) < 4)
-                    newType = (int.Parse(diceType.text) - (5 - int.Parse(numDice.text))).ToString();
+                    newType = 10 - (5 - int.Parse(numDice.text)) - 5;
                 break;
             default:
                 break;
         }
         numDice.text = newNum;
-        diceType.text = newType;
+        diceType.value = newType;
     }
 
     public void GoDownDiceChain()
     {
-        string newNum = numDice.text,
-            newType = diceType.text;
-        switch (diceType.text)
+        var newNum = numDice.text;
+        var newType = diceType.value;
+        switch (diceType.value)
         {
-            case "4":
+            case 0:
                 break;
             default:
-                if (numDice.text == (int.Parse(diceType.text) - 4).ToString())
+                if (numDice.text == (diceType.value + 1).ToString())
                 {
-                    newNum = (int.Parse(diceType.text) - 5).ToString();
-                    newType = "10";
+                    newNum = diceType.value.ToString();
+                    newType = 4;
                 }
-                else if (
-                    diceType.text == "6" || diceType.text == "10" && int.Parse(numDice.text) < 5
-                )
-                    newType = (int.Parse(newType) - 2).ToString();
-                else if (diceType.text == "10" && int.Parse(numDice.text) >= 5)
+                else if (diceType.value == 1 || diceType.value == 4 && int.Parse(numDice.text) < 5)
+                    newType--;
+                else if (diceType.value == 4 && int.Parse(numDice.text) >= 5)
                     newNum = (int.Parse(newNum) - 1).ToString();
-                else if (diceType.text == "7" || diceType.text == "8")
-                    newType = (int.Parse(newType) - 1).ToString();
+                else if (diceType.value == 2 || diceType.value == 3)
+                    newType--;
                 break;
         }
         numDice.text = newNum;
-        diceType.text = newType;
+        diceType.value = newType;
     }
 
     public string GetPowerResultText(TSV power, int roll)
@@ -750,10 +740,6 @@ public static class SaveSystem
         var maxFiles = 21;
         var filesInDir = Directory.GetFiles(directory);
         Array.Sort(filesInDir);
-        foreach (var f in filesInDir)
-        {
-            Debug.Log(f);
-        }
         if (filesInDir.Length <= maxFiles)
             return;
         File.Delete(filesInDir[0]);

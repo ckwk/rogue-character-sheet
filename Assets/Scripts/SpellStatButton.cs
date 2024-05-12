@@ -5,7 +5,7 @@ public class SpellStatButton : MonoBehaviour
 {
     private Text stat;
     private GameManager gm;
-    private string[] mutationStats = { "STR", "DEX", "END", "INT", "DEX" };
+    private string[] mutationStats = { "STR", "DEX", "END", "INT", "CHA" };
     private int mutationIndex = 0;
 
     private void Start()
@@ -22,7 +22,7 @@ public class SpellStatButton : MonoBehaviour
 
     public void SwitchMutationStat()
     {
-        mutationIndex = mutationIndex < mutationStats.Length ? 0 : mutationIndex + 1;
+        mutationIndex = mutationIndex + 1 < mutationStats.Length ? mutationIndex + 1 : 0;
         stat.text = mutationStats[mutationIndex];
         gm.SetCharacterMutationStat();
     }
