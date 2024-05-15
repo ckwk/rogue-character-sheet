@@ -11561,6 +11561,10 @@ MonoBehaviour:
       m_Image: {fileID: 0}
     - m_Text: New
       m_Image: {fileID: 0}
+    - m_Text: Modules...
+      m_Image: {fileID: 0}
+    - m_Text: Refresh Modules
+      m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -11627,6 +11631,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc1031667daa5784f856622a0a88f2c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  saveBanner: {fileID: 619766567}
   loadCharacterMenu: {fileID: 1698670764}
   loadButton: {fileID: 7542784843795174804, guid: 4c0edc2b78224084db453896f33f1c2e, type: 3}
   LoadDropdownContent: {fileID: 804527771}
@@ -13367,7 +13372,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &288511816
 RectTransform:
   m_ObjectHideFlags: 0
@@ -27235,10 +27240,10 @@ RectTransform:
   m_Father: {fileID: 785990199}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.941463}
+  m_AnchorMin: {x: 0, y: 0.9576853}
   m_AnchorMax: {x: 1, y: 0.98700005}
-  m_AnchoredPosition: {x: 1.1342163, y: -0.58251953}
-  m_SizeDelta: {x: 3.7883, y: 1.8721008}
+  m_AnchoredPosition: {x: 1.1342163, y: 0.4091797}
+  m_SizeDelta: {x: 3.7883, y: -0.11149979}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &619766564
 MonoBehaviour:
@@ -27265,7 +27270,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0, g: 0.6784314, b: 0.9529412, a: 1}
     m_PressedColor: {r: 0, g: 0.43656337, b: 0.6132076, a: 1}
     m_SelectedColor: {r: 0, g: 0.6784314, b: 0.9529412, a: 1}
-    m_DisabledColor: {r: 0, g: 0.6784314, b: 0.9529412, a: 0.5019608}
+    m_DisabledColor: {r: 0, g: 0.6784314, b: 0.9529412, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -27279,23 +27284,11 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 619766565}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 619766567}
-        m_TargetAssemblyTypeName: SaveBanner, Assembly-CSharp
-        m_MethodName: Save
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &619766565
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -87419,6 +87412,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: 0.22454834
       objectReference: {fileID: 0}
+    - target: {fileID: 6453403903317332361, guid: c2406738f3b78de4880cf4eb60218246, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -2.0021973
+      objectReference: {fileID: 0}
     - target: {fileID: 8570240450274041338, guid: c2406738f3b78de4880cf4eb60218246, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -87886,6 +87883,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1732662555}
     m_Modifications:
+    - target: {fileID: 27782331474808745, guid: 18778e7ce2c8dc84f81fa892375c8a0a, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.50164795
+      objectReference: {fileID: 0}
     - target: {fileID: 3378505500100413854, guid: 18778e7ce2c8dc84f81fa892375c8a0a, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 0.0040283203

@@ -132,7 +132,7 @@ public class GameManager : MonoBehaviour
         SaveSystem.ImportDownloadedModules();
         if (PlayerPrefs.HasKey("lastFile"))
         {
-            StartCoroutine(SaveSystem.ImportModules(PlayerPrefs.GetString("lastFile"), false));
+            StartCoroutine(ImportModules());
             LoadCharacter(PlayerPrefs.GetString("lastFile"));
             saveBanner.GetComponent<SaveBanner>().Disappear();
             return;
@@ -161,7 +161,20 @@ public class GameManager : MonoBehaviour
         SetCharacterSpellStat();
         SetCharacterMutationStat();
         SaveCharacter();
-        StartCoroutine(SaveSystem.ImportModules(PlayerPrefs.GetString("lastFile"), false));
+        StartCoroutine(ImportModules());
+    }
+
+    IEnumerator ImportModules()
+    {
+        saveBanner.GetComponent<SaveBanner>().Appear();
+        yield return StartCoroutine(
+            SaveSystem.ImportModules(
+                PlayerPrefs.GetString("lastFile"),
+                false,
+                saveBanner.transform.GetChild(0).GetComponent<Text>()
+            )
+        );
+        saveBanner.GetComponent<SaveBanner>().Disappear();
     }
 
     private void Update()
@@ -786,7 +799,7 @@ public static class SaveSystem
         var bf = new BinaryFormatter();
         var file = new FileStream(
             Application.persistentDataPath + "/downloadedModules.rog",
-            FileMode.OpenOrCreate
+            FileMode.Create
         );
         Debug.Log("Serializing downloaded modules...");
         bf.Serialize(file, loadedModules);
@@ -817,11 +830,13 @@ public static class SaveSystem
             //Debug.Log(comp.Split('\n')[0].Trim() + " does not match " + component.Split('.')[0]);
             index++;
         }
+        Debug.Log("didn't find " + component);
         return -1;
     }
 
-    public static IEnumerator ImportModules(string path, bool forceDownload)
+    public static IEnumerator ImportModules(string path, bool forceDownload, Text banner)
     {
+        banner.text = "Fetching API...";
         Debug.Log("fetching API");
         var loadedModuleNames = new List<string>();
         foreach (var m in GameManager.loadedModules.modules)
@@ -845,6 +860,16 @@ public static class SaveSystem
 
                 // compose our dictionary of modules
                 var directoryArray = directory.Split('\n');
+                if (forceDownload)
+                {
+                    _modules.Clear();
+                    _spells.Clear();
+                    _mutations.Clear();
+                    _traits.Clear();
+                    GameManager.loadedModules.spells.Clear();
+                    GameManager.loadedModules.mutations.Clear();
+                    GameManager.loadedModules.traits.Clear();
+                }
                 _modules.Add(directoryArray[0], new List<string>());
                 for (var i = 1; i < directoryArray.Length; i++)
                 {
@@ -853,6 +878,7 @@ public static class SaveSystem
                     _modules[directoryArray[0]].Add(directoryArray[i]);
                 }
 
+                banner.text = "Fetching Modules...";
                 // download some modules
                 foreach (var section in _modules)
                 {
@@ -860,29 +886,45 @@ public static class SaveSystem
                     {
                         if (loadedModuleNames.Contains(module) && !forceDownload)
                             continue;
+                        banner.text = "Fetching " + module + "...";
                         Debug.Log("fetching " + module);
                         loadedModuleNames.Add(module);
+                        GameManager.loadedModules.modules.Remove(
+                            GameManager.loadedModules.modules.Find(m => m.Split(',')[0] == module)
+                        );
                         yield return FetchModule(module);
                     }
                 }
-
                 // load the components from the downloaded modules
-                yield return LoadComponents(_spells, "/Spells/", GameManager.loadedModules.spells);
+                banner.text = "Loading Spells...";
+                yield return LoadComponents(
+                    _spells,
+                    "/Spells/",
+                    GameManager.loadedModules.spells,
+                    banner
+                );
+                banner.text = "Loading Mutations...";
                 yield return LoadComponents(
                     _mutations,
                     "/Mutations/",
-                    GameManager.loadedModules.mutations
+                    GameManager.loadedModules.mutations,
+                    banner
                 );
-                yield return LoadComponents(_traits, "/Traits/", GameManager.loadedModules.traits);
+                banner.text = "Loading Traits...";
+                yield return LoadComponents(
+                    _traits,
+                    "/Traits/",
+                    GameManager.loadedModules.traits,
+                    banner
+                );
             }
         }
 
+        banner.text = "Activating Modules...";
         // load the character's modules.rog file if it exists
         LoadActiveModules(path);
-
         if (GameManager.activeModules.Count == 0)
             GameManager.activeModules.Add(GameManager.loadedModules.modules[0]);
-        Debug.Log(GameManager.activeModules[0]);
 
         // activate modules for this character
         foreach (var module in GameManager.activeModules)
@@ -959,10 +1001,16 @@ public static class SaveSystem
         }
     }
 
-    static IEnumerator LoadComponents(List<string> type, string folder, List<string> target)
+    static IEnumerator LoadComponents(
+        List<string> type,
+        string folder,
+        List<string> target,
+        Text banner
+    )
     {
         foreach (var item in type)
         {
+            banner.text = "Fetching " + item.Split('.')[0] + "...";
             using var request = UnityWebRequest.Get(GameManager.repoURL + folder + item);
             yield return request.SendWebRequest();
             if (request.result != UnityWebRequest.Result.Success)
@@ -975,6 +1023,7 @@ public static class SaveSystem
     static void ActivateComponent(string component, List<TSV> activatedList)
     {
         var componentToActivate = TSV.ParseTSV(component.Replace("\r\n", "\n"));
+        activatedList.Remove(activatedList.Find(c => c.GetName() == componentToActivate.GetName()));
         activatedList.Add(componentToActivate);
         Debug.Log("Activated " + componentToActivate.GetName());
     }

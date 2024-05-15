@@ -1,3 +1,4 @@
+using System.Collections;
 using System.IO;
 using System.Linq;
 using UnityEngine;
@@ -7,6 +8,7 @@ public class HamburgerMenu : MonoBehaviour
 {
     private Dropdown dd;
     private GameManager _gm;
+    public SaveBanner saveBanner;
     public GameObject loadCharacterMenu,
         loadButton;
     public Transform LoadDropdownContent;
@@ -21,8 +23,6 @@ public class HamburgerMenu : MonoBehaviour
     {
         switch (dd.value)
         {
-            case 0:
-                break;
             case 1:
                 _gm.SaveCharacter();
                 break;
@@ -35,11 +35,27 @@ public class HamburgerMenu : MonoBehaviour
             case 4:
                 CreateNewCharacter();
                 break;
+            case 6:
+                StartCoroutine(RefreshModules());
+                break;
             default:
                 break;
         }
 
         _gm.ResetHamburger();
+    }
+
+    IEnumerator RefreshModules()
+    {
+        saveBanner.Appear();
+        yield return StartCoroutine(
+            SaveSystem.ImportModules(
+                PlayerPrefs.GetString("lastFile"),
+                true,
+                saveBanner.transform.GetChild(0).GetComponent<Text>()
+            )
+        );
+        saveBanner.Disappear();
     }
 
     private void CreateNewCharacter()

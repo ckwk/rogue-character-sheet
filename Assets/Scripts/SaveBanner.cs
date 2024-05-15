@@ -7,7 +7,7 @@ public class SaveBanner : MonoBehaviour
     private Vector2 _startPos,
         _loweredPos;
     private bool alreadyActive;
-    private float _speed = 3f,
+    private float _speed = 10f,
         offset = Screen.height * 0.045f;
 
     private void Awake()
@@ -28,7 +28,7 @@ public class SaveBanner : MonoBehaviour
 
     public void Disappear()
     {
-        gameObject.SetActive(false);
+        StartCoroutine(Slide(false));
         alreadyActive = false;
     }
 
