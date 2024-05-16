@@ -1014,7 +1014,7 @@ public static class SaveSystem
             using var request = UnityWebRequest.Get(GameManager.repoURL + folder + item);
             yield return request.SendWebRequest();
             if (request.result != UnityWebRequest.Result.Success)
-                Debug.Log(request.error);
+                Debug.Log(request.error + " " + item.Split('.')[0]);
             else
                 target.Add(request.downloadHandler.text);
         }
