@@ -1,5 +1,5 @@
 using System.Linq;
-using TMPro;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -24,7 +24,24 @@ public class EntryField : MonoBehaviour
         textBox.gameObject.SetActive(true);
         _gm.textBoxActivator = gameObject;
         var details = handler.serializedEntries[parent.index].Split('|').ToList();
-        details.RemoveAll(s => string.IsNullOrWhiteSpace(s));
+
+        Debug.Log(handler.transform.parent.name);
+        switch (handler.transform.parent.name)
+        {
+            case "Traits":
+                details = details.GetRange(0, 2);
+                break;
+            case "EquipmentContainer":
+                details = details.GetRange(0, 3);
+                break;
+            case "Armour":
+                details = details.GetRange(0, 4);
+                break;
+            case "Weapons":
+                details = details.GetRange(0, 5);
+                break;
+        }
+
         textBox.GetChild(2).GetComponent<Text>().text = details[0] + " — Effects";
         textBox.GetChild(1).GetComponent<InputField>().text = details.Last();
     }
