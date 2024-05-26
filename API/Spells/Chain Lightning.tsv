@@ -1,7 +1,7 @@
 Chain Lightning				
 Cost: Expensive	Range: Varies	Duration: N/A	Casting time: 2 actions	Response: DEX
 Corruption (1d10)	Choose one, if all are taken take 1d10 damage instead: All the hair on your body perpetually stands up as if by static electricity and can only be calmed for a couple of hours at a time; You attract electricity wherever you go causing electronics to short out near you and deliver small static shocks when you aproach; Your fingers are distorted into lightning bolt-esque shapes;			
-1-4	You lose this spell until the next time you rest for at least 8 hours and gain a Corruption.                        			
+1-4	You gain a Corruption.                        			
 5-8	One target within 30' must attempt a DEX response against the spellcheck.  On a failure, they take 1d8 damage and the bolt targets another available target within 30' at random.			
 9-12	One target within 30' must attempt a DEX response against the spellcheck.  On a failure, they take 1d10 damage and the bolt targets another available target within 30' at random.  If it hits the next target, it can jump again at random.			
 13-15	One target within 45' must attempt a DEX response against the spellcheck.  On a failure, they take 1d10 damage and the bolt targets another available target within 30' at random.  The bolt continues to jump until you stop it or it misses.  Each time the bolt jumps, the response DC is reduced by 2.			
