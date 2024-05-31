@@ -1,10 +1,13 @@
 Hush				
 Cost: Moderate	Range: Varies	Duration: Varies	Casting time: 2 actions	Response: CHA
-Corruption (1d8)	Choose one, or take 1d8 damage instead: You speak in whispers regardless of how loud you try to speak;  It becomes hard for you to hear well, even though your ears function as normal meaning loud noises are only barely perceptible but still can damage your ears;			
-1-4	You gain a Corruption.                        			
+Corruption (1d8)	Choose one, if all are taken take 1d8 damage instead: You speak in whispers regardless of how loud you try to speak;  It becomes hard for you to hear well, even though your ears function as normal meaning loud noises are only barely perceptible but still can damage your ears;			
+1-4	You lose this spell until the next time you rest for at least 8 hours and gain a Corruption.                        			
 5-8	One target that you can see must make a CHA response against the spellcheck or become muffled until your next turn or for ten seconds if not in combat.  While muffled, all sound the target makes is significantly diminished, to the point where only characters within 30' can hear the target.			
-9-12	One target that you can see must make a CHA response against the spellcheck or become silenced until your next turn or for ten seconds if not in combat.  A silenced target cannot make any sound, no speech, no footsteps, nothing.			
-13-15	One target that you can see must make a CHA response against the spellcheck or become silenced for the next minute.  A silenced target cannot make any sound, no speech, no footsteps, nothing. 			
-16-18	Up to two targets that you can see must make a CHA response against the spellcheck or become silenced for the next minute.  A silenced target cannot make any sound, no speech, no footsteps, nothing.        			
-19-21	Up to two targets that you can see must make a CHA response against the spellcheck or become silenced for 5 minutes.  A silenced target cannot make any sound, no speech, no footsteps, nothing.        			
-22+	Up to four targets that you can see must make a CHA response against the spellcheck or become silenced for 5 minutes.  A silenced target cannot make any sound, no speech, no footsteps, nothing.        						
+9-12	One target that you can see must make a CHA response against the spellcheck or become silenced until your next turn or for ten seconds if not in combat.  A silenced target cannot make any sound, no speech, no footsteps, nothing.  Spell casters cannot cast spells while silenced.			
+13-15	One target that you can see must make a CHA response against the spellcheck or become silenced for the next minute.  A silenced target cannot make any sound, no speech, no footsteps, nothing.  Spell casters cannot cast spells while silenced.			
+16-18	Up to two targets that you can see must make a CHA response against the spellcheck or become silenced for the next minute.  A silenced target cannot make any sound, no speech, no footsteps, nothing.  Spell casters cannot cast spells while silenced.			
+19-21	Up to two targets that you can see must make a CHA response against the spellcheck or become silenced for 5 minutes.  A silenced target cannot make any sound, no speech, no footsteps, nothing.  Spell casters cannot cast spells while silenced.			
+22+	Up to four targets that you can see must make a CHA response against the spellcheck or become silenced for 5 minutes.  A silenced target cannot make any sound, no speech, no footsteps, nothing.  Spell casters cannot cast spells while silenced.			
+28-29				
+30-31				
+32+				

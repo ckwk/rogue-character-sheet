@@ -1,5 +1,5 @@
 Explosion				
-Cost: Moderate	Range: Varies	Duration: N/A	Casting time: 2 actions	Response: END
+Cost: Moderate	Range: Varies	Duration: N/A	Casting time: 1 action	Response: END
 Corruption (1d8)	Choose one, or take 1d8 damage instead: You become fiery and irritable at the sign of even the slightest complications;  Your body expands in size making it hard for you to move around as well;  You must shout whenever trying to talk;  The hearing in one of your ears goes out and is replaced with constant ringing;			
 1-4	You gain a Corruption.                        			
 5-8	All targets within 5' of you must make an END response against the spellcheck.  On a failure, the target takes 1d8 damage and is pushed 10' away from you.  On a success, they take half damage.			
