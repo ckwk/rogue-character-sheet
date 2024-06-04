@@ -29,7 +29,11 @@ public class StatButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         "2d7",
         "2d8",
         "2d10",
-        "3d7"
+        "3d7",
+        "3d8",
+        "3d10",
+        "4d8",
+        "4d10"
     };
 
     private void Awake()
@@ -56,13 +60,12 @@ public class StatButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
     public void OpenDiceRollerForStat()
     {
-        if (Int32.Parse(stat.text) - 1 >= 10)
-            return;
         diceMenu.SetActive(true);
         diceSwipeBar.SetActive(true);
         swipeToRoll.SetActive(true);
         diceButton.SetActive(false);
-        var die = dice[Int32.Parse(stat.text) - 1];
+        var diceType = int.Parse(stat.text);
+        var die = diceType <= dice.Length ? dice[diceType - 1] : diceType - 10 + "d10";
         print(die);
         numDice.text = die[0].ToString();
         var index = 0;

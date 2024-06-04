@@ -8,6 +8,7 @@ using static GameManager;
 public class RollPowerButton : MonoBehaviour
 {
     public InputField powerNameField,
+        powerBonusField,
         uiResultNum;
     private GameObject powerScreen;
     private GameManager gm;
@@ -20,8 +21,8 @@ public class RollPowerButton : MonoBehaviour
         mutationStat;
     private int levelOfCastingStat;
     private int roll = 0;
-    private int[] numDicePerLevel = { 1, 1, 1, 1, 1, 2, 2, 2, 2, 3 };
-    private int[] diceTypePerLevel = { 4, 6, 7, 8, 10, 6, 7, 8, 10, 7 };
+    private int[] numDicePerLevel = { 1, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 4, 4 };
+    private int[] diceTypePerLevel = { 4, 6, 7, 8, 10, 6, 7, 8, 10, 7, 8, 10, 8, 10 };
 
     private void Start()
     {
@@ -86,11 +87,23 @@ public class RollPowerButton : MonoBehaviour
                 break;
         }
 
-        for (int i = 0; i < numDicePerLevel[levelOfCastingStat - 1]; i++)
+        var castingBonus = int.Parse(powerBonusField.text.Substring(1));
+        levelOfCastingStat += powerBonusField.text.StartsWith("-") ? -castingBonus : castingBonus;
+
+        var numDiceToRoll =
+            levelOfCastingStat < numDicePerLevel.Length
+                ? numDicePerLevel[levelOfCastingStat - 1]
+                : levelOfCastingStat - 10;
+        var diceTypeToRoll =
+            levelOfCastingStat < diceTypePerLevel.Length
+                ? diceTypePerLevel[levelOfCastingStat - 1]
+                : 10;
+        print(numDiceToRoll + "d" + diceTypeToRoll);
+        for (int i = 0; i < numDiceToRoll; i++)
         {
-            var newRoll = Random.Range(1, diceTypePerLevel[levelOfCastingStat - 1] + 1);
-            if (newRoll == diceTypePerLevel[levelOfCastingStat - 1])
-                newRoll += Random.Range(1, diceTypePerLevel[levelOfCastingStat - 1] + 1);
+            var newRoll = Random.Range(1, diceTypeToRoll + 1);
+            if (newRoll == diceTypeToRoll)
+                newRoll += Random.Range(1, diceTypeToRoll + 1);
             print(newRoll);
             roll += newRoll;
         }

@@ -784,14 +784,15 @@ public static class SaveSystem
 
     public static void LoadActiveModules(string path)
     {
-        var modulesPath = Path.GetDirectoryName(path).Replace("\\", "/") + "/modules.rog";
-        if (File.Exists(modulesPath))
-        {
-            var bf = new BinaryFormatter();
-            var modulesFile = new FileStream(modulesPath, FileMode.Open);
-            GameManager.activeModules = (List<string>)bf.Deserialize(modulesFile);
-            modulesFile.Close();
-        }
+        // var modulesPath = Path.GetDirectoryName(path).Replace("\\", "/") + "/modules.rog";
+        // if (File.Exists(modulesPath))
+        // {
+        //     var bf = new BinaryFormatter();
+        //     var modulesFile = new FileStream(modulesPath, FileMode.Open);
+        //     GameManager.activeModules = (List<string>)bf.Deserialize(modulesFile);
+        //     modulesFile.Close();
+        // }
+        GameManager.activeModules = GameManager.loadedModules.modules;
     }
 
     public static void SerializeDownloadedModules(LoadedModules loadedModules)
@@ -923,12 +924,15 @@ public static class SaveSystem
         banner.text = "Activating Modules...";
         // load the character's modules.rog file if it exists
         LoadActiveModules(path);
-        if (GameManager.activeModules.Count == 0)
-            GameManager.activeModules.Add(GameManager.loadedModules.modules[0]);
+        // if (GameManager.activeModules.Count < GameManager.loadedModules.modules.Count)
+        //     GameManager.activeModules.Add(GameManager.loadedModules.modules[0]);
 
         // activate modules for this character
         foreach (var module in GameManager.activeModules)
         {
+            Debug.Log(GameManager.loadedModules.modules.Count);
+            // foreach (var m in GameManager.activeModules)
+            //     Debug.Log(m);
             var componentList = GameManager.loadedModules.modules
                 .Find(s => s.Contains(module))
                 .Split(',');
