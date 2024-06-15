@@ -42373,7 +42373,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   numEntries: 2
-  entriesUntilScroll: 9
+  entriesUntilScroll: 7
   easing: 0.35
   lowestEntry: {fileID: 0}
   view: {fileID: 940855925}

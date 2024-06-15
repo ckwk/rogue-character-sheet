@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -44,11 +42,15 @@ public class RollPowerButton : MonoBehaviour
         switch (powerType)
         {
             case 0:
-                power = spellObjects.Find(p => p.GetName() == powerNameField.text);
+                power = spellObjects.Find(
+                    p => p.GetName().ToLower() == powerNameField.text.ToLower().Trim()
+                );
                 RollStat(castingStat.text);
                 break;
             case 1:
-                power = mutationsObjects.Find(p => p.GetName() == powerNameField.text);
+                power = mutationsObjects.Find(
+                    p => p.GetName().ToLower() == powerNameField.text.ToLower().Trim()
+                );
                 RollStat(mutationStat.text);
                 break;
         }
@@ -87,7 +89,8 @@ public class RollPowerButton : MonoBehaviour
                 break;
         }
 
-        var castingBonus = int.Parse(powerBonusField.text.Substring(1));
+        var castingBonus =
+            powerBonusField.text.Trim() == "" ? 0 : int.Parse(powerBonusField.text.Substring(1));
         levelOfCastingStat += powerBonusField.text.StartsWith("-") ? -castingBonus : castingBonus;
 
         var numDiceToRoll =
@@ -108,6 +111,4 @@ public class RollPowerButton : MonoBehaviour
             roll += newRoll;
         }
     }
-
-    //method for updating the result text is in the GameManager
 }
